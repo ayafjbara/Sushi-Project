@@ -6,11 +6,18 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/relativeLayout1">
 
-        android:layout_height="wrap_content"></RelativeLayout>
+        <include layout="@layout/sushi_view_layout" />
+    </RelativeLayout>
 
     <!-- Sushi's extras-->
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></RelativeLayout>
+        android:layout_height="wrap_content"
+        android:id="@+id/relativeLayout2">
+
+        <include layout="@layout/sushi_extras_layout" />
+    </RelativeLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
