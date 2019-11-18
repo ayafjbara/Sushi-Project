@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Itamae</string>
+    <string name="your_order">Your Order:</string>
+    <string name="sample_order">1x Maki:\n1x Avocado\n1x Cucumber\n1x Carrot</string>
+    <string name="place_order_btn">Place Order</string>
 </resources>
