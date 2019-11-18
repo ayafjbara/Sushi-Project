@@ -1,21 +1,18 @@
 package com.ux.itamae;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
+import android.widget.GridView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import java.util.ArrayList;
+
 public class FishFragment extends Fragment {
-    private Context context;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.extras_layout, container, false);
@@ -23,17 +20,12 @@ public class FishFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-//        Bundle args = getArguments();
-//        ((TextView) view.findViewById(android.R.id.text1))
-//                .setText(Integer.toString(args.getInt(ARG_OBJECT)));
-        TableLayout tableLayout = view.findViewById(R.id.extrasTable);
-        TableRow tableRow1 = new TableRow(getActivity());
-        ImageView salmonImage =  new ImageView(getActivity());
-        salmonImage.setImageResource(R.drawable.ic_ex_salmon);
-        tableRow1.addView(salmonImage);
-        ImageView redTunaImage =  new ImageView(getActivity());
-        salmonImage.setImageResource(R.drawable.ic_ex_redtuna);
-        tableRow1.addView(redTunaImage);
-        tableLayout.addView(tableRow1);
+        ArrayList<Integer> images = new ArrayList<>();
+        images.add(R.drawable.ic_ex_redtuna);
+        images.add(R.drawable.ic_ex_salmon);
+        GridView gridView = view.findViewById(R.id.extrasTable);
+        gridView.setNumColumns(2);
+        GridExtraAdapter gridExtraAdapter = new GridExtraAdapter(getContext(), R.layout.grid_image_view_layout, "", images);
+        gridView.setAdapter(gridExtraAdapter);
     }
 }
