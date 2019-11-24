@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="page_margin">20dp</dimen>
+    <dimen name="sushi_size">220dp</dimen>
+    <dimen name="sushi_scale">0.82</dimen>
+
+    <dimen name="image_width">93dp</dimen>
+    <dimen name="image_height">91dp</dimen>
+</resources>
