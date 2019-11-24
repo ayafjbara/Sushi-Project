@@ -21,6 +21,8 @@ public class GridExtraAdapter extends ArrayAdapter<Integer> {
     private String mAppend;
     private ArrayList<Integer> allImages;
 
+    public ExtraClickCallBack callBack;
+
     public GridExtraAdapter(Context context, int layoutResource, String mAppend, ArrayList<Integer> images) {
         super(context, layoutResource, images);
         this.layoutInflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
@@ -28,6 +30,10 @@ public class GridExtraAdapter extends ArrayAdapter<Integer> {
         this.layoutResource = layoutResource;
         this.mAppend = mAppend;
         this.allImages = images;
+    }
+
+    public interface ExtraClickCallBack{
+        void onExtraClick(ImageView imageView);
     }
 
     private static class ViewHolder {
@@ -43,6 +49,14 @@ public class GridExtraAdapter extends ArrayAdapter<Integer> {
             convertView = layoutInflater.inflate(layoutResource, parent, false);
             holder = new ViewHolder();
             holder.imageView = (ImageView) convertView.findViewById(R.id.extra_image);
+            holder.imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (callBack!=null){
+                        callBack.onExtraClick(holder.imageView);
+                    }
+                }
+            });
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();

@@ -18,6 +18,7 @@ import com.google.android.material.tabs.TabLayout;
 public class ExtrasFragmet extends Fragment {
     ExtrasPagerAdapter extrasPagerAdapter;
     ViewPager viewPager;
+    public GridExtraAdapter.ExtraClickCallBack callBack;
 
     @Nullable
     @Override
@@ -31,6 +32,9 @@ public class ExtrasFragmet extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         extrasPagerAdapter = new ExtrasPagerAdapter(getChildFragmentManager());
+        if (callBack != null){
+            extrasPagerAdapter.callBack = callBack;
+        }
         viewPager = view.findViewById(R.id.sushi_extras);
         viewPager.setAdapter(extrasPagerAdapter);
         TabLayout tabLayout = view.findViewById(R.id.tab_layout);
@@ -41,6 +45,8 @@ public class ExtrasFragmet extends Fragment {
 class ExtrasPagerAdapter extends FragmentStatePagerAdapter {
     FishFragment fishFragment;
     VegetablesFragment vegetablesFragment;
+    public GridExtraAdapter.ExtraClickCallBack callBack;
+
 
     public ExtrasPagerAdapter(FragmentManager fm) {
         super(fm);
