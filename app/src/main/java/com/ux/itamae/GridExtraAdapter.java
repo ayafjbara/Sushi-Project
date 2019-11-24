@@ -20,7 +20,6 @@ public class GridExtraAdapter extends ArrayAdapter<Integer> {
     private int layoutResource;
     private String mAppend;
     private ArrayList<Integer> allImages;
-
     public ExtraClickCallBack callBack;
 
     public GridExtraAdapter(Context context, int layoutResource, String mAppend, ArrayList<Integer> images) {
@@ -32,7 +31,7 @@ public class GridExtraAdapter extends ArrayAdapter<Integer> {
         this.allImages = images;
     }
 
-    public interface ExtraClickCallBack{
+    public interface ExtraClickCallBack {
         void onExtraClick(ImageView imageView);
     }
 
@@ -52,7 +51,7 @@ public class GridExtraAdapter extends ArrayAdapter<Integer> {
             holder.imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (callBack!=null){
+                    if (callBack != null) {
                         callBack.onExtraClick(holder.imageView);
                     }
                 }

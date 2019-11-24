@@ -1,10 +1,10 @@
 package com.ux.itamae;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,6 +18,7 @@ import com.google.android.material.tabs.TabLayout;
 public class ExtrasFragmet extends Fragment {
     ExtrasPagerAdapter extrasPagerAdapter;
     ViewPager viewPager;
+    SushiExtrasActivity sushiExtrasActivity;
     public GridExtraAdapter.ExtraClickCallBack callBack;
 
     @Nullable
@@ -25,14 +26,13 @@ public class ExtrasFragmet extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-
         return inflater.inflate(R.layout.sushi_extras_layout, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        extrasPagerAdapter = new ExtrasPagerAdapter(getChildFragmentManager());
-        if (callBack != null){
+        extrasPagerAdapter = new ExtrasPagerAdapter(getChildFragmentManager(), sushiExtrasActivity);
+        if (callBack != null) {
             extrasPagerAdapter.callBack = callBack;
         }
         viewPager = view.findViewById(R.id.sushi_extras);
@@ -40,18 +40,27 @@ public class ExtrasFragmet extends Fragment {
         TabLayout tabLayout = view.findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager);
     }
+
+    public void setSushiExtrasActivity(SushiExtrasActivity sushiExtrasActivity) {
+        this.sushiExtrasActivity = sushiExtrasActivity;
+    }
 }
 
 class ExtrasPagerAdapter extends FragmentStatePagerAdapter {
     FishFragment fishFragment;
     VegetablesFragment vegetablesFragment;
     public GridExtraAdapter.ExtraClickCallBack callBack;
+    SushiExtrasActivity sushiExtrasActivity;
 
-
-    public ExtrasPagerAdapter(FragmentManager fm) {
+    public ExtrasPagerAdapter(FragmentManager fm, SushiExtrasActivity sushiExtrasActivity) {
         super(fm);
         fishFragment = new FishFragment();
+        fishFragment.setSushiExtrasActivity(sushiExtrasActivity);
+
         vegetablesFragment = new VegetablesFragment();
+        vegetablesFragment.setSushiExtrasActivity(sushiExtrasActivity);
+
+        this.sushiExtrasActivity = sushiExtrasActivity;
     }
 
     @Override

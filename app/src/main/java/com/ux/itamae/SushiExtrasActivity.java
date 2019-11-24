@@ -29,11 +29,10 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
                 return;
             }
 
-            ExtrasFragmet firstFragment = new ExtrasFragmet();
-
-            firstFragment.setArguments(getIntent().getExtras());
-
-            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, firstFragment).commit();
+            ExtrasFragmet extrasFragmet = new ExtrasFragmet();
+            extrasFragmet.setSushiExtrasActivity(this);
+            extrasFragmet.setArguments(getIntent().getExtras());
+            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, extrasFragmet).commit();
         }
 
         sushiImage = findViewById(R.id.image_sushi);
