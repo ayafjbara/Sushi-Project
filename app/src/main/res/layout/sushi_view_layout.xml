@@ -56,7 +56,7 @@
             app:layout_constraintEnd_toEndOf="@id/image_sushi"
             app:layout_constraintStart_toStartOf="@id/image_sushi"
             app:layout_constraintTop_toTopOf="@id/image_sushi"
-            app:srcCompat="@drawable/ic_in_salmon" />
+            app:srcCompat="@drawable/ic_in_tuna" />
 
         <ImageView
             android:id="@+id/img_in_bottom"
