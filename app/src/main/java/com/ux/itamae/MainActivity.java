@@ -3,9 +3,10 @@ package com.ux.itamae;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -14,25 +15,27 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ImageButton maki_btn = findViewById(R.id.maki_button);
-        ImageButton photomaki_btn = findViewById(R.id.photomaki_button);
+        LinearLayout maki = findViewById(R.id.maki_frame);
+        LinearLayout futomaki = findViewById(R.id.futomaki_frame);
 
         final Context context = this;
+        final Intent intent = new Intent(context, SushiExtrasActivity.class);
 
-        maki_btn.setOnClickListener(new View.OnClickListener() {
+        maki.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO implement this
-                Toast.makeText(context, "order my maki", Toast.LENGTH_SHORT).show();
-
+//                Toast.makeText(context, "order my maki", Toast.LENGTH_SHORT).show();
+                intent.putExtra("SUSHI_TYPE", "Maki");
+                startActivity(intent);
             }
         });
 
-        photomaki_btn.setOnClickListener(new View.OnClickListener() {
+        futomaki.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO implement this
-                Toast.makeText(context, "order my Photo-maki", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "order my Futomaki", Toast.LENGTH_SHORT).show();
+                intent.putExtra("SUSHI_TYPE", "Futomaki");
+                startActivity(intent);
             }
         });
     }
