@@ -32,7 +32,7 @@ public class GridExtraAdapter extends ArrayAdapter<Integer> {
     }
 
     public interface ExtraClickCallBack {
-        void onExtraClick(ImageView imageView);
+        void onExtraClick(int imageView);
     }
 
     private static class ViewHolder {
@@ -43,25 +43,25 @@ public class GridExtraAdapter extends ArrayAdapter<Integer> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         final ViewHolder holder;
-        Integer image = getItem(position);
+        final Integer image = getItem(position);
         if (convertView == null) {
             convertView = layoutInflater.inflate(layoutResource, parent, false);
             holder = new ViewHolder();
             holder.imageView = (ImageView) convertView.findViewById(R.id.extra_image);
-            holder.imageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (callBack != null) {
-                        callBack.onExtraClick(holder.imageView);
-                    }
-                }
-            });
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
         holder.imageView.setImageResource(image);
+        holder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (callBack != null) {
+                    callBack.onExtraClick(image);
+                }
+            }
+        });
 
         return convertView;
     }

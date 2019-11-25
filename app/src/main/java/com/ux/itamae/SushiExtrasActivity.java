@@ -2,7 +2,9 @@ package com.ux.itamae;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,8 +15,7 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
     private final String CONTEXT_INTENT = "context";
 
     ImageView sushiImage;
-    ImageView extra1;
-    ImageView extra2;
+    ImageView extra1, extra2, extra3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +37,35 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
         }
 
         sushiImage = findViewById(R.id.image_sushi);
-        extra1 = findViewById(R.id.img_in_top_right);
-        extra2 = findViewById(R.id.img_in_top_left);
     }
 
 
     @Override
-    public void onExtraClick(ImageView imageView) {
+    public void onExtraClick(int image) {
+        if (extra1 == null) {
+            extra1 = findViewById(R.id.img_in_top_right);
+            extra1.setImageDrawable(get_in_extra(image));
+            extra1.setVisibility(View.VISIBLE);
+        } else if (extra2 == null) {
+            extra2 = findViewById(R.id.img_in_top_left);
+            extra2.setImageDrawable(get_in_extra(image));
+            extra2.setVisibility(View.VISIBLE);
+        } else if (extra3 == null) {
+            extra3 = findViewById(R.id.img_in_bottom);
+            extra3.setImageDrawable(get_in_extra(image));
+            extra3.setVisibility(View.VISIBLE);
+        }
+    }
 
+    private Drawable get_in_extra(int image) {
+        switch (image) {
+            case R.drawable.ic_ex_avocado:
+                return getDrawable(R.drawable.ic_in_avocado);
+            case R.drawable.ic_ex_salmon:
+                return getDrawable(R.drawable.ic_in_salmon);
+            case R.drawable.ic_ex_redtuna:
+                return getDrawable(R.drawable.ic_in_tuna);
+        }
+        return getDrawable(R.drawable.ic_in_tuna);
     }
 }
