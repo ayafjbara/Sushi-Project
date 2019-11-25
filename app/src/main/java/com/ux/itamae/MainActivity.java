@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity {
+    public final String SUSHI_TYPE_KEY = "SUSHI_TYPE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 //                Toast.makeText(context, "order my maki", Toast.LENGTH_SHORT).show();
-                intent.putExtra("SUSHI_TYPE", "Maki");
+                intent.putExtra(SUSHI_TYPE_KEY, "Maki");
                 startActivity(intent);
             }
         });
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 //                Toast.makeText(context, "order my Futomaki", Toast.LENGTH_SHORT).show();
-                intent.putExtra("SUSHI_TYPE", "Futomaki");
+                intent.putExtra(SUSHI_TYPE_KEY, "Futomaki");
                 startActivity(intent);
             }
         });

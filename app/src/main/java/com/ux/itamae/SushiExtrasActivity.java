@@ -10,13 +10,18 @@ import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import static com.ux.itamae.PaymentActivity.ORDER_KEY;
+
 public class SushiExtrasActivity extends AppCompatActivity implements GridExtraAdapter.ExtraClickCallBack {
 
     private Context context;
     private final String CONTEXT_INTENT = "context";
+    private final String SUSHI_TYPE_KEY = "SUSHI_TYPE";
+    private final int ROLL_FINISHED = 666;
 
     ImageView sushiImage;
     ImageView extra1, extra2, extra3;
+    private String rollType = "";
     int extras_counter = 0;
 
     @Override
@@ -25,6 +30,7 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
         setContentView(R.layout.sushi_layout);
 
         context = this;
+        rollType = getIntent().getStringExtra(SUSHI_TYPE_KEY);
 
         if (findViewById(R.id.fragment_container) != null) {
 
@@ -41,9 +47,37 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
         sushiImage = findViewById(R.id.image_sushi);
     }
 
+    private String rollToString(int[] values){
+        String roll = "" + rollType + ":\n";
+        for (int value : values) {
+            switch (value) {
+                case R.drawable.ic_in_avocado:
+                    roll += "1x Avocado\n";
+                    break;
+                case R.drawable.ic_in_salmon:
+                    roll += "1x Salmon\n";
+                    break;
+                case R.drawable.ic_in_tuna:
+                    roll += "1x Tuna\n";
+                    break;
+            }
+        }
+        return roll;
+    }
+
     public void onFinishRollClick(View view) {
         // TODO insert roll to basket
+        int[] tags = new int[3];
+        tags[0] = (int) extra1.getTag();
+        tags[1] = (int) extra2.getTag();
+        tags[2] = (int) extra3.getTag();
+
+        String roll = rollToString(tags);
+
         // TODO move to Main Activity screen
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra(ORDER_KEY, roll);
+        startActivityForResult(intent, ROLL_FINISHED);
     }
 
     private void updateCounter(Boolean isIncrease) {
@@ -56,11 +90,11 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
 
         if (extras_counter == 3) {
             // TODO instead of 3 should be variable derived from roll type
-            // TODO set 'go to payment' button visible
+            // set 'go to payment' button visible
             RelativeLayout finishRollLay = findViewById(R.id.finishRollLay);
             finishRollLay.setVisibility(View.VISIBLE);
         } else {
-            // TODO set 'go to payment' button invisible
+            // set 'go to payment' button invisible
             RelativeLayout finishRollLay = findViewById(R.id.finishRollLay);
             finishRollLay.setVisibility(View.INVISIBLE);
         }
@@ -90,15 +124,19 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
         if (extra1 == null) {
             extra1 = findViewById(R.id.img_in_top_right);
             extra1.setImageDrawable(geInExtra(image));
+            extra1.setTag(image);
             extra1.setVisibility(View.VISIBLE);
+
         } else if (extra2 == null) {
             extra2 = findViewById(R.id.img_in_top_left);
             extra2.setImageDrawable(geInExtra(image));
+            extra2.setTag(image);
             extra2.setVisibility(View.VISIBLE);
 
         } else if (extra3 == null) {
             extra3 = findViewById(R.id.img_in_bottom);
             extra3.setImageDrawable(geInExtra(image));
+            extra3.setTag(image);
             extra3.setVisibility(View.VISIBLE);
         }
     }

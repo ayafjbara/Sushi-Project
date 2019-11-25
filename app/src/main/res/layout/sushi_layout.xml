@@ -27,10 +27,9 @@
 
     <RelativeLayout
         android:id="@+id/finishRollLay"
-        android:onClick="onFinishRollClick"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_below="@id/relativeLayout2"
         android:gravity="bottom">
 
@@ -38,6 +37,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/colorAccent"
+            android:onClick="onFinishRollClick"
+            android:clickable="true"
             android:textSize="20sp"
             android:text="Finish roll" />
     </RelativeLayout>
