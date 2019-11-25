@@ -16,6 +16,7 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
 
     ImageView sushiImage;
     ImageView extra1, extra2, extra3;
+    int extras_counter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,24 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
         sushiImage = findViewById(R.id.image_sushi);
     }
 
+    private void updateCounter(Boolean isIncrease) {
+        if (isIncrease && (extras_counter < 3)) {
+            extras_counter++;
+
+        } else if (!isIncrease && (extras_counter > 0)) {
+            extras_counter--;
+        }
+
+        if (extras_counter == 3) {
+            // TODO instead of 3 should be variable derived from roll type
+            // TODO set 'go to payment' button visible
+        } else {
+            // TODO set 'go to payment' button invisible
+        }
+    }
+
     public void onInExtraClick(View view) {
+        updateCounter(false);
         switch (view.getId()) {
             case R.id.img_in_top_right:
                 extra1.setVisibility(View.INVISIBLE);
@@ -58,6 +76,7 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
 
     @Override
     public void onExtraClick(int image) {
+        updateCounter(true);
         if (extra1 == null) {
             extra1 = findViewById(R.id.img_in_top_right);
             extra1.setImageDrawable(geInExtra(image));
@@ -66,6 +85,7 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
             extra2 = findViewById(R.id.img_in_top_left);
             extra2.setImageDrawable(geInExtra(image));
             extra2.setVisibility(View.VISIBLE);
+
         } else if (extra3 == null) {
             extra3 = findViewById(R.id.img_in_bottom);
             extra3.setImageDrawable(geInExtra(image));
