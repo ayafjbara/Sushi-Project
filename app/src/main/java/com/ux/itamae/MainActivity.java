@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        welcome_screen
         LinearLayout maki = findViewById(R.id.maki_frame);
         LinearLayout futomaki = findViewById(R.id.futomaki_frame);
 
@@ -39,5 +40,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
 }

@@ -14,9 +14,15 @@ import java.util.ArrayList;
 
 public class VegetablesFragment extends Fragment {
 
+    SushiExtrasActivity sushiExtrasActivity;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.extras_layout, container, false);
+    }
+
+    public void setSushiExtrasActivity(SushiExtrasActivity sushiExtrasActivity) {
+        this.sushiExtrasActivity = sushiExtrasActivity;
     }
 
     @Override
@@ -28,6 +34,7 @@ public class VegetablesFragment extends Fragment {
         GridView gridView = view.findViewById(R.id.extrasTable);
         gridView.setNumColumns(2);
         GridExtraAdapter gridExtraAdapter = new GridExtraAdapter(getContext(), R.layout.grid_image_view_layout, "", images);
+        gridExtraAdapter.callBack = sushiExtrasActivity;
         gridView.setAdapter(gridExtraAdapter);
     }
 }
