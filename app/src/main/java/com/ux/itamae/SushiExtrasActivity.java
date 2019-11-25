@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -40,6 +41,11 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
         sushiImage = findViewById(R.id.image_sushi);
     }
 
+    public void onFinishRollClick(View view) {
+        // TODO insert roll to basket
+        // TODO move to Main Activity screen
+    }
+
     private void updateCounter(Boolean isIncrease) {
         if (isIncrease && (extras_counter < 3)) {
             extras_counter++;
@@ -51,8 +57,12 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
         if (extras_counter == 3) {
             // TODO instead of 3 should be variable derived from roll type
             // TODO set 'go to payment' button visible
+            RelativeLayout finishRollLay = findViewById(R.id.finishRollLay);
+            finishRollLay.setVisibility(View.VISIBLE);
         } else {
             // TODO set 'go to payment' button invisible
+            RelativeLayout finishRollLay = findViewById(R.id.finishRollLay);
+            finishRollLay.setVisibility(View.INVISIBLE);
         }
     }
 
