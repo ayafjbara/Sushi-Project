@@ -30,9 +30,9 @@ public class MainActivity extends AppCompatActivity {
         // get current order details
         Intent orderIntent = getIntent();
         final String orderDetails = orderIntent.getStringExtra(ORDER_KEY);
-//        if (orderDetails != null && !orderDetails.isEmpty()){
-//            orderFrameBtn.setVisibility(View.VISIBLE);
-//        }
+        if (orderDetails != null && !orderDetails.isEmpty()){
+            orderFrameBtn.setVisibility(View.VISIBLE);
+        }
 
         maki.setOnClickListener(new View.OnClickListener() {
             @Override
