@@ -10,22 +10,29 @@ import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity {
     public final String SUSHI_TYPE_KEY = "SUSHI_TYPE";
+    final String ORDER_KEY = "order";
+
+    private LinearLayout maki;
+    private LinearLayout futomaki;
+    private LinearLayout orderFrameBtn;
+//    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        LinearLayout maki = findViewById(R.id.maki_frame);
-        LinearLayout futomaki = findViewById(R.id.futomaki_frame);
-        LinearLayout orderFrameBtn = findViewById(R.id.order_frame_btn);
+        maki = findViewById(R.id.maki_frame);
+        futomaki = findViewById(R.id.futomaki_frame);
+        orderFrameBtn = findViewById(R.id.order_frame_btn);
 
-        final String ORDER_KEY = "order";
         final Context context = this;
         final Intent makeRollIntent = new Intent(context, SushiExtrasActivity.class);
-
         // get current order details
         Intent orderIntent = getIntent();
         final String orderDetails = orderIntent.getStringExtra(ORDER_KEY);
+//        if (orderDetails != null && !orderDetails.isEmpty()){
+//            orderFrameBtn.setVisibility(View.VISIBLE);
+//        }
 
         maki.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,4 +63,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 }

@@ -3,6 +3,7 @@ package com.ux.itamae;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,17 +13,15 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-// todo: (IN SUSHI SCREEN)
-// Intent intent = new Intent(mContext, PaymentActivity.class);
-// intent.putExtra(ORDER_KEY, "1x Maki:\n1x Salmon\n1x Avocado\n1x Cucumber");
-// startActivity(intent);
-/////////////////////////////////////////////////
-
 public class PaymentActivity extends AppCompatActivity {
 
     public static final String ORDER_KEY = "order";
     private TextView orderContent;
     private Button orderBtn;
+    private Intent intent;
+    private String rollOrder;
+    private ConstraintLayout orderLayout;
+    private ConstraintLayout finishOrderLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +31,8 @@ public class PaymentActivity extends AppCompatActivity {
         // bind views
         orderContent = findViewById(R.id.order_content);
         orderBtn = findViewById(R.id.order_btn);
+        orderLayout = findViewById(R.id.order_layout);
+        finishOrderLayout = findViewById(R.id.finish_order_layout);
 
         // set up toolbar and back arrow
         Toolbar mToolbar = findViewById(R.id.toolbar);
@@ -44,7 +45,7 @@ public class PaymentActivity extends AppCompatActivity {
         setUpOrderBtn();
 
         // handle intent
-        Intent intent = getIntent();
+        intent = getIntent();
         handleIntent(intent);
 
         Toolbar myChildToolbar =
@@ -53,14 +54,18 @@ public class PaymentActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+        rollOrder = intent.getStringExtra(ORDER_KEY);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {// go to back activity from here
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
+            Intent backIntent = new Intent(this, MainActivity.class);
+            backIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            if (rollOrder != null && !rollOrder.isEmpty()) {
+                backIntent.putExtra(ORDER_KEY, rollOrder);
+            }
+            startActivity(backIntent);
             finish();
             return true;
         }
@@ -71,7 +76,8 @@ public class PaymentActivity extends AppCompatActivity {
         orderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // do something on place order click todo
+                orderLayout.setVisibility(View.GONE);
+                finishOrderLayout.setVisibility(View.VISIBLE);
             }
         });
     }

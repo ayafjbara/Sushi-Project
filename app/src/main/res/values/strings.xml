@@ -7,4 +7,5 @@
     <string name="first_sushi_topping_desc">first sushi topping</string>
     <string name="second_sushi_topping_desc">second sushi topping</string>
     <string name="third_sushi_topping_desc">third sushi topping</string>
+    <string name="order_finish_text">Your order has been placed!</string>
 </resources>
