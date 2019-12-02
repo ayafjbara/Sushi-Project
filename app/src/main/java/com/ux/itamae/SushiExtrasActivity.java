@@ -22,6 +22,7 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
     ImageView sushiImage;
     ImageView extra1, extra2, extra3;
     private String rollType = "";
+    private String rollOrder;
     int extras_counter = 0;
 
     @Override
@@ -30,7 +31,9 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
         setContentView(R.layout.sushi_layout);
 
         context = this;
-        rollType = getIntent().getStringExtra(SUSHI_TYPE_KEY);
+        Intent intent = getIntent();
+        rollType = intent.getStringExtra(SUSHI_TYPE_KEY);
+        rollOrder = handlePreviousOrder(intent);
 
         if (findViewById(R.id.fragment_container) != null) {
 
@@ -40,25 +43,34 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
 
             ExtrasFragmet extrasFragmet = new ExtrasFragmet();
             extrasFragmet.setSushiExtrasActivity(this);
-            extrasFragmet.setArguments(getIntent().getExtras());
+            extrasFragmet.setArguments(intent.getExtras());
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, extrasFragmet).commit();
         }
 
         sushiImage = findViewById(R.id.image_sushi);
     }
 
+    private String handlePreviousOrder(Intent intent) {
+        String order = intent.getStringExtra(ORDER_KEY);
+        if (order != null) {
+            return order;
+        } else {
+            return "";
+        }
+    }
+
     private String rollToString(int[] values){
         String roll = "" + rollType + ":\n";
         for (int value : values) {
             switch (value) {
-                case R.drawable.ic_in_avocado:
-                    roll += "1x Avocado\n";
+                case R.drawable.ic_ex_avocado:
+                    roll += "\t1x Avocado\n";
                     break;
-                case R.drawable.ic_in_salmon:
-                    roll += "1x Salmon\n";
+                case R.drawable.ic_ex_salmon:
+                    roll += "\t1x Salmon\n";
                     break;
-                case R.drawable.ic_in_tuna:
-                    roll += "1x Tuna\n";
+                case R.drawable.ic_ex_redtuna:
+                    roll += "\t1x Tuna\n";
                     break;
             }
         }
@@ -72,12 +84,14 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
         tags[1] = (int) extra2.getTag();
         tags[2] = (int) extra3.getTag();
 
-        String roll = rollToString(tags);
+        String currentRoll = rollToString(tags);
+        String updatedOrder = rollOrder + currentRoll;
 
         // TODO move to Main Activity screen
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra(ORDER_KEY, roll);
-        startActivityForResult(intent, ROLL_FINISHED);
+        intent.putExtra(ORDER_KEY, updatedOrder);
+//        startActivityForResult(intent, ROLL_FINISHED);
+        startActivity(intent);
     }
 
     private void updateCounter(Boolean isIncrease) {
@@ -123,25 +137,25 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
         updateCounter(true);
         if (extra1 == null) {
             extra1 = findViewById(R.id.img_in_top_right);
-            extra1.setImageDrawable(geInExtra(image));
+            extra1.setImageDrawable(getInExtra(image));
             extra1.setTag(image);
             extra1.setVisibility(View.VISIBLE);
 
         } else if (extra2 == null) {
             extra2 = findViewById(R.id.img_in_top_left);
-            extra2.setImageDrawable(geInExtra(image));
+            extra2.setImageDrawable(getInExtra(image));
             extra2.setTag(image);
             extra2.setVisibility(View.VISIBLE);
 
         } else if (extra3 == null) {
             extra3 = findViewById(R.id.img_in_bottom);
-            extra3.setImageDrawable(geInExtra(image));
+            extra3.setImageDrawable(getInExtra(image));
             extra3.setTag(image);
             extra3.setVisibility(View.VISIBLE);
         }
     }
 
-    private Drawable geInExtra(int image) {
+    private Drawable getInExtra(int image) {
         switch (image) {
             case R.drawable.ic_ex_avocado:
                 return getDrawable(R.drawable.ic_in_avocado);

@@ -84,7 +84,25 @@
                     android:textSize="30sp" />
             </LinearLayout>
 
-<!--            <ImageButton-->
+            <LinearLayout
+                android:id="@+id/order_frame_btn"
+                android:layout_marginTop="@dimen/page_margin"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/ic_button_border">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Order"
+                    android:padding="20dp"
+                    android:textSize="30sp" />
+            </LinearLayout>
+
+            <!--            <ImageButton-->
 <!--                android:id="@+id/maki_button"-->
 <!--                style="@android:style/Widget.DeviceDefault.ImageButton"-->
 <!--                android:layout_width="match_parent"-->

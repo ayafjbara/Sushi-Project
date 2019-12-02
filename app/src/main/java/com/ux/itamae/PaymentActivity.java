@@ -1,5 +1,6 @@
 package com.ux.itamae;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -45,6 +46,13 @@ public class PaymentActivity extends AppCompatActivity {
         // handle intent
         Intent intent = getIntent();
         handleIntent(intent);
+
+        Toolbar myChildToolbar =
+                (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(myChildToolbar);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
     }
 
     @Override

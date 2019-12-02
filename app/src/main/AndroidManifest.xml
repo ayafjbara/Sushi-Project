@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".SushiExtrasActivity"></activity>
+        <activity android:name=".PaymentActivity"></activity>
     </application>
 
 </manifest>
