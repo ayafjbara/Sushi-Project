@@ -1,11 +1,14 @@
 <resources>
     <string name="app_name">Itamae</string>
     <string name="your_order">Your Order:</string>
-    <string name="sample_order">1x Maki:\n1x Avocado\n1x Cucumber\n1x Carrot</string>
+    <string name="sample_order">Avocado</string>
     <string name="place_order_btn">Place Order</string>
     <string name="sushi_image_desc">sushi image</string>
     <string name="first_sushi_topping_desc">first sushi topping</string>
     <string name="second_sushi_topping_desc">second sushi topping</string>
     <string name="third_sushi_topping_desc">third sushi topping</string>
     <string name="order_finish_text">Your order has been placed!</string>
+    <string name="order_sum_title">Order Summary</string>
+    <string name="minus_roll">minus roll</string>
+    <string name="plus_roll">plus roll</string>
 </resources>
