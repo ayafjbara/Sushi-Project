@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -33,6 +34,9 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sushi_layout);
+
+        findViewById(R.id.rollToMenu).setEnabled(false);
+        findViewById(R.id.rollToSummary).setEnabled(false);
 
         context = this;
         Intent intent = getIntent();
@@ -80,12 +84,16 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
         if (extras_counter == 3) {
             // TODO instead of 3 should be variable derived from roll type
             // set 'go to payment' button visible
-            RelativeLayout finishRollLay = findViewById(R.id.finishRollLay);
-            finishRollLay.setVisibility(View.VISIBLE);
+//            RelativeLayout finishRollLay = findViewById(R.id.finishRollLay);
+//            finishRollLay.setVisibility(View.VISIBLE);
+            findViewById(R.id.rollToMenu).setEnabled(true);
+            findViewById(R.id.rollToSummary).setEnabled(true);
         } else {
             // set 'go to payment' button invisible
             RelativeLayout finishRollLay = findViewById(R.id.finishRollLay);
-            finishRollLay.setVisibility(View.INVISIBLE);
+//            finishRollLay.setVisibility(View.INVISIBLE);
+            findViewById(R.id.rollToMenu).setEnabled(false);
+            findViewById(R.id.rollToSummary).setEnabled(false);
         }
     }
 
