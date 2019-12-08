@@ -1,6 +1,8 @@
 package com.ux.itamae;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Entity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.widget.RelativeLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import static com.ux.itamae.PaymentActivity.ORDER_KEY;
 
@@ -22,21 +25,25 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
     private final String SUSHI_TYPE_KEY = "SUSHI_TYPE";
 
     private final int ROLL_FINISHED = 666;
-
-    ImageView sushiImage;
-    ImageView extra1, extra2, extra3;
     private String rollType = "";
+    private int extras_counter = 0;
+
+    private ImageView extra1, extra2, extra3;
     private HashMap<SushiRoll, Integer> rollOrder;
     private SushiRoll myRoll;
-    int extras_counter = 0;
+    private Button rollToMenuBtn, rollToSummaryBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sushi_layout);
 
-        findViewById(R.id.rollToMenu).setEnabled(false);
-        findViewById(R.id.rollToSummary).setEnabled(false);
+
+        rollToMenuBtn = findViewById(R.id.rollToMenu);
+        rollToSummaryBtn = findViewById(R.id.rollToSummary);
+
+        rollToMenuBtn.setEnabled(false);
+        rollToSummaryBtn.setEnabled(false);
 
         context = this;
         Intent intent = getIntent();
@@ -55,24 +62,38 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
             extrasFragmet.setArguments(intent.getExtras());
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, extrasFragmet).commit();
         }
-
-        sushiImage = findViewById(R.id.image_sushi);
     }
 
 
     public void onFinishRollClick(View view) {
+        Class startAct;
+        if (view.getId() == R.id.rollToSummary)
+            startAct = PaymentActivity.class;
+        else
+            startAct = MainActivity.class;
+
         if (rollOrder != null) {
-            Integer rollNum = rollOrder.get(myRoll);
-            rollOrder.put(myRoll, rollNum + 1);
+            int count = 1;
+            SushiRoll eqRoll = myRoll;
+            for (Map.Entry<SushiRoll, Integer> sushiRoll : rollOrder.entrySet()) {
+                if (sushiRoll.getKey().equals(myRoll)) {
+                    eqRoll = sushiRoll.getKey();
+                    count = sushiRoll.getValue() + 1;
+                    break;
+                }
+            }
+            rollOrder.put(eqRoll, count);
         } else {
             rollOrder = new HashMap<>();
             rollOrder.put(myRoll, 1);
         }
-        Intent intent = new Intent(this, MainActivity.class);
+
+        Intent intent = new Intent(this, startAct);
         intent.putExtra(ORDER_KEY, rollOrder);
         setResult(RESULT_OK, intent);
         finish();
     }
+
 
     private void updateCounter(Boolean isIncrease) {
         if (isIncrease && (extras_counter < 3)) {
@@ -86,14 +107,14 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
             // set 'go to payment' button visible
 //            RelativeLayout finishRollLay = findViewById(R.id.finishRollLay);
 //            finishRollLay.setVisibility(View.VISIBLE);
-            findViewById(R.id.rollToMenu).setEnabled(true);
-            findViewById(R.id.rollToSummary).setEnabled(true);
+            rollToMenuBtn.setEnabled(true);
+            rollToSummaryBtn.setEnabled(true);
         } else {
             // set 'go to payment' button invisible
             RelativeLayout finishRollLay = findViewById(R.id.finishRollLay);
 //            finishRollLay.setVisibility(View.INVISIBLE);
-            findViewById(R.id.rollToMenu).setEnabled(false);
-            findViewById(R.id.rollToSummary).setEnabled(false);
+            rollToMenuBtn.setEnabled(false);
+            rollToSummaryBtn.setEnabled(false);
         }
     }
 
