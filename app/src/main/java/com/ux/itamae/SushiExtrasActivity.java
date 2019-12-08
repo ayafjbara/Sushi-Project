@@ -66,12 +66,21 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
 
 
     public void onFinishRollClick(View view) {
-        Class startAct;
-        if (view.getId() == R.id.rollToSummary)
-            startAct = PaymentActivity.class;
-        else
-            startAct = MainActivity.class;
 
+        addRollToOrder();
+        if (view.getId() == R.id.rollToSummary) {
+            Intent intent = new Intent(this, PaymentActivity.class);
+            intent.putExtra(ORDER_KEY, rollOrder);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra(ORDER_KEY, rollOrder);
+            setResult(RESULT_OK, intent);
+            finish();
+        }
+    }
+
+    private void addRollToOrder() {
         if (rollOrder != null) {
             int count = 1;
             SushiRoll eqRoll = myRoll;
@@ -87,11 +96,6 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
             rollOrder = new HashMap<>();
             rollOrder.put(myRoll, 1);
         }
-
-        Intent intent = new Intent(this, startAct);
-        intent.putExtra(ORDER_KEY, rollOrder);
-        setResult(RESULT_OK, intent);
-        finish();
     }
 
 
