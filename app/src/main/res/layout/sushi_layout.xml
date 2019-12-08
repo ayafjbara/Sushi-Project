@@ -15,7 +15,7 @@
             <include layout="@layout/sushi_view_layout" />
         </RelativeLayout>
 
-    <!-- SushiRoll's extras-->
+    <!-- Sushi's extras-->
     <RelativeLayout
         android:id="@+id/relativeLayout2"
         android:layout_width="match_parent"
@@ -60,33 +60,6 @@
             android:onClick="onFinishRollClick"
             android:text="Checkout"
             android:textSize="20sp" />
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:orientation="horizontal">-->
-
-<!--            <Button-->
-<!--                android:id="@+id/rollToMenu"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:background="@color/colorAccent"-->
-<!--                android:clickable="true"-->
-<!--                android:onClick="onFinishRollClick"-->
-<!--                android:text="Menu"-->
-<!--                android:textSize="20sp" />-->
-
-<!--            <Button-->
-<!--                android:id="@+id/rollToSummary"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:background="@color/colorAccent"-->
-<!--                android:clickable="true"-->
-<!--                android:onClick="onFinishRollClick"-->
-<!--                android:text="Order summary"-->
-<!--                android:textSize="20sp" />-->
-<!--        </LinearLayout>-->
-
     </RelativeLayout>
 </RelativeLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
