@@ -2,10 +2,14 @@ package com.ux.itamae;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.view.View;
-import android.widget.ImageView;
 
+import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 
 public class SushiRoll implements Parcelable {
 
@@ -104,5 +108,24 @@ public class SushiRoll implements Parcelable {
         parcel.writeInt(extra2);
         parcel.writeInt(extra3);
         parcel.writeString(type);
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        int objExtra1 = ((SushiRoll) obj).getExtra1();
+        int objExtra2 = ((SushiRoll) obj).getExtra2();
+        int objExtra3 = ((SushiRoll) obj).getExtra3();
+
+        List<Integer> obj1Extras = new ArrayList<Integer>(Arrays.asList(objExtra1, objExtra2, objExtra3));
+        List<Integer> obj2Extras = new ArrayList<Integer>(Arrays.asList(extra1, extra2, extra3));
+
+        Collections.sort(obj1Extras);
+        Collections.sort(obj2Extras);
+
+        for (int i = 0; i < 3; i++) {
+            if (obj1Extras.get(i) != obj2Extras.get(i))
+                return false;
+        }
+        return true;
     }
 }
