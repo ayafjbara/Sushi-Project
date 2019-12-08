@@ -21,10 +21,7 @@ import static com.ux.itamae.PaymentActivity.ORDER_KEY;
 public class SushiExtrasActivity extends AppCompatActivity implements GridExtraAdapter.ExtraClickCallBack {
 
     private Context context;
-    private final String CONTEXT_INTENT = "context";
     private final String SUSHI_TYPE_KEY = "SUSHI_TYPE";
-
-    private final int ROLL_FINISHED = 666;
     private String rollType = "";
     private int extras_counter = 0;
 
@@ -37,7 +34,6 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sushi_layout);
-
 
         rollToMenuBtn = findViewById(R.id.rollToMenu);
         rollToSummaryBtn = findViewById(R.id.rollToSummary);

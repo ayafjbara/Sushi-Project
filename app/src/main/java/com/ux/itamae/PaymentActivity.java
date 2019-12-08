@@ -87,7 +87,6 @@ public class PaymentActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle(getString(R.string.order_sum_title));
         actionBar.setDisplayHomeAsUpEnabled(true);
-
     }
 
     @Override
@@ -116,6 +115,12 @@ public class PaymentActivity extends AppCompatActivity {
         });
     }
 
+    public void onAddRollClick(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra(ORDER_KEY, rollOrder);
+        startActivity(intent);
+    }
+
     private void handleIntent(Intent intent) {
 //        rollOrder = intent.getStringExtra(ORDER_KEY);
         sushiRolls = (HashMap<SushiRoll, Integer>) intent.getSerializableExtra(ORDER_KEY);
@@ -124,5 +129,4 @@ public class PaymentActivity extends AppCompatActivity {
 //    private void updateOrderText(String order) {
 //        orderContent.setText(order);
 //    }
-
 }
