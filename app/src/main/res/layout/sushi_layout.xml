@@ -15,7 +15,7 @@
             <include layout="@layout/sushi_view_layout" />
         </RelativeLayout>
 
-    <!-- Sushi's extras-->
+    <!-- SushiRoll's extras-->
     <RelativeLayout
         android:id="@+id/relativeLayout2"
         android:layout_width="match_parent"

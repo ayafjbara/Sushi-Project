@@ -2,25 +2,40 @@ package com.ux.itamae;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.view.View;
+import android.widget.ImageView;
 
 import java.util.HashMap;
 
-public class Sushi implements Parcelable {
+public class SushiRoll implements Parcelable {
 
-    private int extra1;
-    private int extra2;
-    private int extra3;
+    private int extra1, extra2, extra3;
+    private String type;
 
-    public Sushi(int extra1, int extra2, int extra3) {
+    public SushiRoll(String type) {
+        this.type = type;
+    }
+
+    public SushiRoll(int extra1, int extra2, int extra3, String type) {
         this.extra1 = extra1;
         this.extra2 = extra2;
         this.extra3 = extra3;
+        this.type = type;
     }
 
-    protected Sushi(Parcel in) {
+    protected SushiRoll(Parcel in) {
         extra1 = in.readInt();
         extra2 = in.readInt();
         extra3 = in.readInt();
+        type = in.readString();
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public int getExtra1() {
@@ -47,6 +62,7 @@ public class Sushi implements Parcelable {
         this.extra3 = extra3;
     }
 
+
     public HashMap getExtras() {
         HashMap<Integer, Integer> extras = new HashMap();
 
@@ -65,15 +81,15 @@ public class Sushi implements Parcelable {
         return extras;
     }
 
-    public static final Creator<Sushi> CREATOR = new Creator<Sushi>() {
+    public static final Creator<SushiRoll> CREATOR = new Creator<SushiRoll>() {
         @Override
-        public Sushi createFromParcel(Parcel in) {
-            return new Sushi(in);
+        public SushiRoll createFromParcel(Parcel in) {
+            return new SushiRoll(in);
         }
 
         @Override
-        public Sushi[] newArray(int size) {
-            return new Sushi[size];
+        public SushiRoll[] newArray(int size) {
+            return new SushiRoll[size];
         }
     };
 
@@ -87,5 +103,6 @@ public class Sushi implements Parcelable {
         parcel.writeInt(extra1);
         parcel.writeInt(extra2);
         parcel.writeInt(extra3);
+        parcel.writeString(type);
     }
 }

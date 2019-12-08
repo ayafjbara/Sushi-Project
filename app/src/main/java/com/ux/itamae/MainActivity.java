@@ -1,5 +1,6 @@
 package com.ux.itamae;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -8,13 +9,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import java.util.HashMap;
+
 public class MainActivity extends AppCompatActivity {
     public final String SUSHI_TYPE_KEY = "SUSHI_TYPE";
-    final String ORDER_KEY = "order";
+    private int NEW_ROLL_REQUEST = 1;
+    private String ORDER_KEY = "order";
 
     private LinearLayout maki;
     private LinearLayout futomaki;
     private LinearLayout orderFrameBtn;
+    private HashMap orderDetails;
+
 //    private Context context;
 
     @Override
@@ -29,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
         final Intent makeRollIntent = new Intent(context, SushiExtrasActivity.class);
         // get current order details
         Intent orderIntent = getIntent();
-        final String orderDetails = orderIntent.getStringExtra(ORDER_KEY);
-        if (orderDetails != null && !orderDetails.isEmpty()){
+        orderDetails = (HashMap) orderIntent.getSerializableExtra(ORDER_KEY);
+        if (orderDetails != null && !orderDetails.isEmpty()) {
             orderFrameBtn.setVisibility(View.VISIBLE);
         }
 
@@ -40,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 //                Toast.makeText(context, "order my maki", Toast.LENGTH_SHORT).show();
                 makeRollIntent.putExtra(SUSHI_TYPE_KEY, "Maki");
                 makeRollIntent.putExtra(ORDER_KEY, orderDetails);
-                startActivity(makeRollIntent);
+                startActivityForResult(makeRollIntent, NEW_ROLL_REQUEST);
             }
         });
 
@@ -50,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 //                Toast.makeText(context, "order my Futomaki", Toast.LENGTH_SHORT).show();
                 makeRollIntent.putExtra(SUSHI_TYPE_KEY, "Futomaki");
                 makeRollIntent.putExtra(ORDER_KEY, orderDetails);
-                startActivity(makeRollIntent);
+                startActivityForResult(makeRollIntent, NEW_ROLL_REQUEST);
             }
         });
 
@@ -64,4 +70,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
+        if (requestCode == NEW_ROLL_REQUEST && resultCode == RESULT_OK) {
+            orderDetails = (HashMap) data.getSerializableExtra(ORDER_KEY);
+            orderFrameBtn.setVisibility(View.VISIBLE);
+        }
+    }
 }
