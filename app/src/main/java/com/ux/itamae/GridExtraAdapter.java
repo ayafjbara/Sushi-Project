@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -37,6 +38,7 @@ public class GridExtraAdapter extends ArrayAdapter<Integer> {
 
     private static class ViewHolder {
         ImageView imageView;
+        TextView textView;
     }
 
     @NonNull
@@ -48,12 +50,14 @@ public class GridExtraAdapter extends ArrayAdapter<Integer> {
             convertView = layoutInflater.inflate(layoutResource, parent, false);
             holder = new ViewHolder();
             holder.imageView = (ImageView) convertView.findViewById(R.id.extra_image);
+            holder.textView = (TextView) convertView.findViewById(R.id.extraName);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
         holder.imageView.setImageResource(image);
+        holder.textView.setText(getExtraName(image));
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,5 +68,21 @@ public class GridExtraAdapter extends ArrayAdapter<Integer> {
         });
 
         return convertView;
+    }
+
+    private String getExtraName(int imageID) {
+        switch (imageID) {
+            case R.drawable.ic_ex_avocado:
+                return "Avocado";
+            case R.drawable.ic_ex_salmon:
+                return "Salmon";
+            case R.drawable.ic_ex_redtuna:
+                return "Red Tuna";
+            case R.drawable.ic_ex_cucumber:
+                return "Cucumber";
+            case R.drawable.ic_ex_carrot:
+                return "Carrot";
+        }
+        return "";
     }
 }

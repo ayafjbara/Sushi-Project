@@ -2,10 +2,22 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_gravity="center">
 
     <ImageView
         android:id="@+id/extra_image"
         android:layout_width="90dp"
         android:layout_height="93dp" />
+
+    <TextView
+        android:id="@+id/extraName"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/extra_image"
+        android:layout_marginTop="0dp"
+        android:gravity="center"
+        android:text="kjsdfkdjf"
+        android:textAlignment="center"
+        android:textColor="#8B7F7F" />
 </RelativeLayout>

@@ -163,6 +163,10 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
                 return getDrawable(R.drawable.ic_in_salmon);
             case R.drawable.ic_ex_redtuna:
                 return getDrawable(R.drawable.ic_in_tuna);
+            case R.drawable.ic_ex_cucumber:
+                return getDrawable(R.drawable.ic_in_tuna);
+            case R.drawable.ic_ex_carrot:
+                return getDrawable(R.drawable.ic_in_tuna);
         }
         return getDrawable(R.drawable.ic_in_tuna);
     }
