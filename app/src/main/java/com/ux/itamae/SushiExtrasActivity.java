@@ -26,6 +26,7 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
     private int extras_counter = 0;
 
     private ImageView extra1, extra2, extra3;
+    private ImageView sushi;
     private HashMap<SushiRoll, Integer> rollOrder;
     private SushiRoll myRoll;
     private Button rollToMenuBtn, rollToSummaryBtn;
@@ -37,6 +38,7 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
 
         rollToMenuBtn = findViewById(R.id.rollToMenu);
         rollToSummaryBtn = findViewById(R.id.rollToSummary);
+        sushi = findViewById(R.id.image_sushi);
 
         rollToMenuBtn.setEnabled(false);
         rollToSummaryBtn.setEnabled(false);
@@ -46,6 +48,9 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
         rollType = intent.getStringExtra(SUSHI_TYPE_KEY);
         rollOrder = (HashMap) intent.getSerializableExtra(ORDER_KEY);
         myRoll = new SushiRoll(rollType);
+
+        // update UI
+        updateSushiTypeImage(rollType);
 
         if (findViewById(R.id.fragment_container) != null) {
 
@@ -57,6 +62,15 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
             extrasFragmet.setSushiExtrasActivity(this);
             extrasFragmet.setArguments(intent.getExtras());
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, extrasFragmet).commit();
+        }
+    }
+
+    public void updateSushiTypeImage(String type){
+        if (type.equals("Maki")){
+            sushi.setImageDrawable(getDrawable(R.drawable.ic_sushi));
+        } else {
+            sushi.setImageDrawable(getDrawable(R.drawable.ic_sushi_io));
+
         }
     }
 
