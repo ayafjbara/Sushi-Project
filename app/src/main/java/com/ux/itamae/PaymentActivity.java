@@ -49,7 +49,7 @@ public class PaymentActivity extends AppCompatActivity implements RollRecyclerUt
         handleIntent(intent);
 
         // set up UI
-//        setUpOrderBtn();
+        setUpOrderBtn();
         setUpToolbar();
         setUpNewOrderBtn(context);
         setUpRecycler();
@@ -99,15 +99,15 @@ public class PaymentActivity extends AppCompatActivity implements RollRecyclerUt
         return super.onOptionsItemSelected(item);
     }
 
-//    private void setUpOrderBtn() {
-//        orderBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                orderLayout.setVisibility(View.GONE);
-//                finishOrderLayout.setVisibility(View.VISIBLE);
-//            }
-//        });
-//    }
+    private void setUpOrderBtn() {
+        newOrderBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                orderLayout.setVisibility(View.GONE);
+                finishOrderLayout.setVisibility(View.VISIBLE);
+            }
+        });
+    }
 
     public void onAddRollClick(View view) {
         Intent intent = new Intent(this, MainActivity.class);
