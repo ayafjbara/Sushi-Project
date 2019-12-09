@@ -38,7 +38,7 @@
             android:layout_height="0dp"
             android:layout_marginBottom="10dp"
             android:scrollbars="vertical"
-            app:layout_constraintBottom_toTopOf="@id/order_btn"
+            app:layout_constraintBottom_toTopOf="@id/finishRollLay"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar"
@@ -73,29 +73,52 @@
         <!--                android:textSize="18sp" />-->
         <!--        </LinearLayout>-->
 
-        <Button
-            android:id="@+id/order_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/ic_button_border"
-            android:text="@string/place_order_btn"
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/finishRollLay"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_margin="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.75"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent">
 
-        <Button
-            android:id="@+id/addRoll"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/ic_button_border"
-            android:onClick="onAddRollClick"
-            android:text="Add roll"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/order_btn"
-            app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/order_btn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/ic_button_checkout_border"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center"
+                android:text="@string/place_order_btn"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="26sp"
+                android:onClick="setUpOrderBtn"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/addRoll" />
+
+            <ImageView
+                android:id="@+id/addRoll"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:alpha="0.8"
+                android:background="@drawable/ic_button_border"
+                android:elevation="3dp"
+                android:onClick="onAddRollClick"
+                android:paddingStart="6dp"
+                android:paddingEnd="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/order_btn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/ic_add_roll" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -117,16 +140,5 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/new_order_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/page_margin"
-            android:paddingBottom="20dp"
-            android:text="New Order"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

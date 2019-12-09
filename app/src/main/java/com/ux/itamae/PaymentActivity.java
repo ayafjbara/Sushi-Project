@@ -23,7 +23,6 @@ public class PaymentActivity extends AppCompatActivity implements RollRecyclerUt
     public static final String ORDER_KEY = "order";
     private TextView orderContent;
     private Button orderBtn;
-    private Button newOrderBtn;
     private Intent intent;
     private ConstraintLayout orderLayout;
     private ConstraintLayout finishOrderLayout;
@@ -39,8 +38,8 @@ public class PaymentActivity extends AppCompatActivity implements RollRecyclerUt
         // bind views
 //        orderBtn = findViewById(R.id.order_btn);
         finishOrderLayout = findViewById(R.id.finish_order_layout);
-        newOrderBtn = findViewById(R.id.new_order_btn);
         rollRecyclerView = findViewById(R.id.roll_recycler);
+        orderLayout = findViewById(R.id.order_layout);
 
         final Context context = this;
 
@@ -49,9 +48,7 @@ public class PaymentActivity extends AppCompatActivity implements RollRecyclerUt
         handleIntent(intent);
 
         // set up UI
-        setUpOrderBtn();
         setUpToolbar();
-        setUpNewOrderBtn(context);
         setUpRecycler();
     }
 
@@ -64,15 +61,6 @@ public class PaymentActivity extends AppCompatActivity implements RollRecyclerUt
         adapter.submitList(new ArrayList<>(sushiRolls.keySet()));
     }
 
-    private void setUpNewOrderBtn(final Context context) {
-        newOrderBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent backIntent = new Intent(context, MainActivity.class);
-                startActivity(backIntent);
-            }
-        });
-    }
 
     private void setUpToolbar() {
         // set up toolbar and back arrow
@@ -99,14 +87,9 @@ public class PaymentActivity extends AppCompatActivity implements RollRecyclerUt
         return super.onOptionsItemSelected(item);
     }
 
-    private void setUpOrderBtn() {
-        orderBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                orderLayout.setVisibility(View.GONE);
-                finishOrderLayout.setVisibility(View.VISIBLE);
-            }
-        });
+    public void setUpOrderBtn(View view) {
+        orderLayout.setVisibility(View.GONE);
+        finishOrderLayout.setVisibility(View.VISIBLE);
     }
 
     public void onAddRollClick(View view) {
