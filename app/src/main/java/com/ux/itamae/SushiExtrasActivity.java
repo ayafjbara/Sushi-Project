@@ -1,15 +1,13 @@
 package com.ux.itamae;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Entity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -29,19 +27,19 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
     private ImageView sushi;
     private HashMap<SushiRoll, Integer> rollOrder;
     private SushiRoll myRoll;
-    private Button rollToMenuBtn, rollToSummaryBtn;
+    private TextView rollToMenuBtn, rollToCheckoutButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sushi_layout);
 
-        rollToMenuBtn = findViewById(R.id.rollToMenu);
-        rollToSummaryBtn = findViewById(R.id.rollToSummary);
+        rollToMenuBtn = findViewById(R.id.addRollButton);
+        rollToCheckoutButton = findViewById(R.id.rollToCheckoutButton);
         sushi = findViewById(R.id.image_sushi);
 
         rollToMenuBtn.setEnabled(false);
-        rollToSummaryBtn.setEnabled(false);
+        rollToCheckoutButton.setEnabled(false);
 
         context = this;
         Intent intent = getIntent();
@@ -78,7 +76,7 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
     public void onFinishRollClick(View view) {
 
         addRollToOrder();
-        if (view.getId() == R.id.rollToSummary) {
+        if (view.getId() == R.id.rollToCheckoutButton) {
             Intent intent = new Intent(this, PaymentActivity.class);
             intent.putExtra(ORDER_KEY, rollOrder);
             startActivity(intent);
@@ -122,13 +120,13 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
 //            RelativeLayout finishRollLay = findViewById(R.id.finishRollLay);
 //            finishRollLay.setVisibility(View.VISIBLE);
             rollToMenuBtn.setEnabled(true);
-            rollToSummaryBtn.setEnabled(true);
+            rollToCheckoutButton.setEnabled(true);
         } else {
             // set 'go to payment' button invisible
             RelativeLayout finishRollLay = findViewById(R.id.finishRollLay);
 //            finishRollLay.setVisibility(View.INVISIBLE);
             rollToMenuBtn.setEnabled(false);
-            rollToSummaryBtn.setEnabled(false);
+            rollToCheckoutButton.setEnabled(false);
         }
     }
 

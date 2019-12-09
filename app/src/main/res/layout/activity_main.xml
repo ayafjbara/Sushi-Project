@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_buttons_frame"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_checkout_frame"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/app_logo">
@@ -154,7 +154,7 @@
     </ScrollView>
 
     <LinearLayout
-        android:id="@+id/bottom_buttons_frame"
+        android:id="@+id/bottom_checkout_frame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
@@ -168,7 +168,7 @@
             android:layout_height="match_parent"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="@dimen/page_margin"
-            android:background="@drawable/ic_button_summary_border"
+            android:background="@drawable/ic_button_checkout_border"
             android:orientation="horizontal"
             android:visibility="invisible">
             <!--            android:visibility="invisible">-->
@@ -178,9 +178,9 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:padding="20dp"
-                android:text="Order summary"
                 android:textAlignment="center"
-                android:textColor="@color/black"
+                android:text="Checkout"
+                android:textColor="@color/white"
                 android:textSize="30sp" />
         </LinearLayout>
     </LinearLayout>
