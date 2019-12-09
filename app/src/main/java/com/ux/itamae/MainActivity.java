@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
         maki.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Toast.makeText(context, "order my maki", Toast.LENGTH_SHORT).show();
                 makeRollIntent.putExtra(SUSHI_TYPE_KEY, "Maki");
                 makeRollIntent.putExtra(ORDER_KEY, orderDetails);
                 startActivityForResult(makeRollIntent, NEW_ROLL_REQUEST);
@@ -53,8 +52,7 @@ public class MainActivity extends AppCompatActivity {
         futomaki.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Toast.makeText(context, "order my Futomaki", Toast.LENGTH_SHORT).show();
-                makeRollIntent.putExtra(SUSHI_TYPE_KEY, "Futomaki");
+                makeRollIntent.putExtra(SUSHI_TYPE_KEY, "Maki I/O");
                 makeRollIntent.putExtra(ORDER_KEY, orderDetails);
                 startActivityForResult(makeRollIntent, NEW_ROLL_REQUEST);
             }
@@ -72,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-
         if (requestCode == NEW_ROLL_REQUEST && resultCode == RESULT_OK) {
             orderDetails = (HashMap) data.getSerializableExtra(ORDER_KEY);
             orderFrameBtn.setVisibility(View.VISIBLE);
