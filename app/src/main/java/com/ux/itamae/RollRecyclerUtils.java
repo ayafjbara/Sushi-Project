@@ -94,6 +94,9 @@ public class RollRecyclerUtils {
             if (sushiRollsAmounts != null && sushiRollsAmounts.containsKey(roll)) {
                 holder.numOfRolls.setText(String.valueOf(sushiRollsAmounts.get(roll)));
             }
+
+            holder.rollTitle.setText(roll.getType());
+
             Map<Integer, Integer> fillings = roll.getExtras();
             for (Map.Entry<Integer, Integer> filling : fillings.entrySet()) {
                 Filling curFilling = holder.getCurrentFilling();
