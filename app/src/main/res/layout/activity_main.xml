@@ -106,7 +106,7 @@
                         android:layout_marginStart="@dimen/page_margin"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
-                        app:srcCompat="@drawable/ic_sushi1" />
+                        app:srcCompat="@drawable/ic_sushi2" />
 
                     <TextView
                         android:id="@+id/futomaki_title"
