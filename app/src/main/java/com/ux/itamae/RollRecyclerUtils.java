@@ -14,13 +14,8 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ux.itamae.Constants;
-import com.ux.itamae.R;
-import com.ux.itamae.SushiRoll;
-
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Queue;
 
 public class RollRecyclerUtils {
 
@@ -38,13 +33,16 @@ public class RollRecyclerUtils {
     }
 
     interface RollClickCallBack {
-        void onRollClick(SushiRoll sushiRoll);
+        void updateRollAmount(SushiRoll sushiRoll, int numOfRolls);
+
+        void deleteRoll(SushiRoll sushiRoll);
     }
 
     static class RollAdapter extends ListAdapter<SushiRoll, SushiRollHolder> {
 
         Constants constants = Constants.getInstance();
         Context context;
+        RollClickCallBack callback;
         static HashMap<SushiRoll, Integer> sushiRollsAmounts;
 
         public RollAdapter() {
@@ -52,7 +50,7 @@ public class RollRecyclerUtils {
             super(new RollCallBack());
         }
 
-        public void setUpAmounts(HashMap<SushiRoll, Integer> sushiRollsAmounts){
+        public void setUpAmounts(HashMap<SushiRoll, Integer> sushiRollsAmounts) {
             this.sushiRollsAmounts = sushiRollsAmounts;
         }
 
@@ -66,9 +64,13 @@ public class RollRecyclerUtils {
                 @Override
                 public void onClick(View view) {
                     int numOfRolls = Integer.parseInt(holder.numOfRolls.getText().toString());
+                    SushiRoll sushiRoll = getItem(holder.getAdapterPosition());
                     if (numOfRolls > 1) {
                         numOfRolls--;
                         holder.numOfRolls.setText(String.format("%d", numOfRolls));
+                        callback.updateRollAmount(sushiRoll, numOfRolls);
+                    } else {
+                        callback.deleteRoll(sushiRoll);
                     }
                 }
             });
@@ -78,7 +80,8 @@ public class RollRecyclerUtils {
                     int numOfRolls = Integer.parseInt(holder.numOfRolls.getText().toString());
                     numOfRolls++;
                     holder.numOfRolls.setText(String.format("%d", numOfRolls));
-
+                    SushiRoll sushiRoll = getItem(holder.getAdapterPosition());
+                    callback.updateRollAmount(sushiRoll, numOfRolls);
                 }
             });
 
@@ -101,7 +104,6 @@ public class RollRecyclerUtils {
                 curFilling.amount.setText(String.valueOf(amountOfFilling));
                 curFilling.layout.setVisibility(View.VISIBLE);
             }
-
         }
     }
 
@@ -122,7 +124,6 @@ public class RollRecyclerUtils {
             content = view.findViewById(textId);
             image = view.findViewById(imageId);
             amount = view.findViewById(amountId);
-
         }
     }
 
@@ -192,10 +193,7 @@ public class RollRecyclerUtils {
                 default:
                     // shouldn't get here
                     return null;
-
             }
         }
     }
-
-
 }
