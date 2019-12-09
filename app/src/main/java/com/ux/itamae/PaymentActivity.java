@@ -17,7 +17,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class PaymentActivity extends AppCompatActivity {
 
@@ -26,7 +25,6 @@ public class PaymentActivity extends AppCompatActivity {
     private Button orderBtn;
     private Button newOrderBtn;
     private Intent intent;
-    private String rollOrder;
     private ConstraintLayout orderLayout;
     private ConstraintLayout finishOrderLayout;
 
@@ -72,7 +70,6 @@ public class PaymentActivity extends AppCompatActivity {
         newOrderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                rollOrder = "";
                 Intent backIntent = new Intent(context, MainActivity.class);
                 startActivity(backIntent);
             }
@@ -94,8 +91,8 @@ public class PaymentActivity extends AppCompatActivity {
         if (item.getItemId() == android.R.id.home) {// go to back activity from here
             Intent backIntent = new Intent(this, MainActivity.class);
             backIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            if (rollOrder != null && !rollOrder.isEmpty()) {
-                backIntent.putExtra(ORDER_KEY, rollOrder);
+            if (sushiRolls != null && !sushiRolls.isEmpty()) {
+                backIntent.putExtra(ORDER_KEY, sushiRolls);
             }
             startActivity(backIntent);
             finish();
@@ -110,19 +107,17 @@ public class PaymentActivity extends AppCompatActivity {
             public void onClick(View view) {
                 orderLayout.setVisibility(View.GONE);
                 finishOrderLayout.setVisibility(View.VISIBLE);
-                rollOrder = "";
             }
         });
     }
 
     public void onAddRollClick(View view) {
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra(ORDER_KEY, rollOrder);
+        intent.putExtra(ORDER_KEY, sushiRolls);
         startActivity(intent);
     }
 
     private void handleIntent(Intent intent) {
-//        rollOrder = intent.getStringExtra(ORDER_KEY);
         sushiRolls = (HashMap<SushiRoll, Integer>) intent.getSerializableExtra(ORDER_KEY);
     }
 

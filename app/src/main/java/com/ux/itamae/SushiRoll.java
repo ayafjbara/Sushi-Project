@@ -112,9 +112,13 @@ public class SushiRoll implements Parcelable {
 
     @Override
     public boolean equals(@Nullable Object obj) {
-        int objExtra1 = ((SushiRoll) obj).getExtra1();
-        int objExtra2 = ((SushiRoll) obj).getExtra2();
-        int objExtra3 = ((SushiRoll) obj).getExtra3();
+        SushiRoll sushi2 = ((SushiRoll) obj);
+        if (!sushi2.getType().equals(type))
+            return false;
+
+        int objExtra1 = sushi2.getExtra1();
+        int objExtra2 = sushi2.getExtra2();
+        int objExtra3 = sushi2.getExtra3();
 
         List<Integer> obj1Extras = new ArrayList<Integer>(Arrays.asList(objExtra1, objExtra2, objExtra3));
         List<Integer> obj2Extras = new ArrayList<Integer>(Arrays.asList(extra1, extra2, extra3));
@@ -122,10 +126,9 @@ public class SushiRoll implements Parcelable {
         Collections.sort(obj1Extras);
         Collections.sort(obj2Extras);
 
-        for (int i = 0; i < 3; i++) {
-            if (obj1Extras.get(i) != obj2Extras.get(i))
+        for (int i = 0; i < 3; i++)
+            if (!obj1Extras.get(i).equals(obj2Extras.get(i)))
                 return false;
-        }
         return true;
     }
 }
