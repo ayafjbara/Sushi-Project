@@ -6,7 +6,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -65,12 +64,11 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
         }
     }
 
-    public void updateSushiTypeImage(String type){
-        if (type.equals("Maki")){
+    public void updateSushiTypeImage(String type) {
+        if (type.equals("Maki")) {
             sushi.setImageDrawable(getDrawable(R.drawable.ic_sushi));
         } else {
             sushi.setImageDrawable(getDrawable(R.drawable.ic_sushi_io));
-
         }
     }
 
