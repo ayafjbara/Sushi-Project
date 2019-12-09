@@ -18,7 +18,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class PaymentActivity extends AppCompatActivity {
+public class PaymentActivity extends AppCompatActivity implements RollRecyclerUtils.RollClickCallBack {
 
     public static final String ORDER_KEY = "order";
     private TextView orderContent;
@@ -27,9 +27,7 @@ public class PaymentActivity extends AppCompatActivity {
     private Intent intent;
     private ConstraintLayout orderLayout;
     private ConstraintLayout finishOrderLayout;
-
     private RecyclerView rollRecyclerView;
-
     private HashMap<SushiRoll, Integer> sushiRolls;
     private RollRecyclerUtils.RollAdapter adapter = new RollRecyclerUtils.RollAdapter();
 
@@ -62,7 +60,7 @@ public class PaymentActivity extends AppCompatActivity {
                 this, LinearLayoutManager.VERTICAL, false));
         adapter.setUpAmounts(sushiRolls);
         rollRecyclerView.setAdapter(adapter);
-//        adapter.callback = this;  // uncomment and add delete roll option
+        adapter.callback = this;
         adapter.submitList(new ArrayList<>(sushiRolls.keySet()));
     }
 
@@ -119,6 +117,17 @@ public class PaymentActivity extends AppCompatActivity {
 
     private void handleIntent(Intent intent) {
         sushiRolls = (HashMap<SushiRoll, Integer>) intent.getSerializableExtra(ORDER_KEY);
+    }
+
+    @Override
+    public void updateRollAmount(SushiRoll sushiRoll, int numOfRolls) {
+        sushiRolls.put(sushiRoll, numOfRolls);
+    }
+
+    @Override
+    public void deleteRoll(SushiRoll sushiRoll) {
+        sushiRolls.remove(sushiRoll);
+        adapter.submitList(new ArrayList<>(sushiRolls.keySet()));
     }
 
 //    private void updateOrderText(String order) {
