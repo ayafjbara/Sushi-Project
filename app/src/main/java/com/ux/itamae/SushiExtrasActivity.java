@@ -116,17 +116,20 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
             extras_counter--;
         }
 
+        ConstraintLayout finishRollLay = findViewById(R.id.finishRollLay);
         if (extras_counter == 3) {
             // TODO instead of 3 should be variable derived from roll type
             // set 'go to payment' button visible
 //            RelativeLayout finishRollLay = findViewById(R.id.finishRollLay);
 //            finishRollLay.setVisibility(View.VISIBLE);
+            finishRollLay.setAlpha(1f);
             rollToMenuBtn.setEnabled(true);
             rollToCheckoutButton.setEnabled(true);
         } else {
             // set 'go to payment' button invisible
-            ConstraintLayout finishRollLay = findViewById(R.id.finishRollLay);
+
 //            finishRollLay.setVisibility(View.INVISIBLE);
+            finishRollLay.setAlpha(0.5f);
             rollToMenuBtn.setEnabled(false);
             rollToCheckoutButton.setEnabled(false);
         }
