@@ -37,7 +37,7 @@ public class PaymentActivity extends AppCompatActivity implements RollRecyclerUt
         setContentView(R.layout.activity_payment);
 
         // bind views
-        orderBtn = findViewById(R.id.order_btn);
+//        orderBtn = findViewById(R.id.order_btn);
         finishOrderLayout = findViewById(R.id.finish_order_layout);
         newOrderBtn = findViewById(R.id.new_order_btn);
         rollRecyclerView = findViewById(R.id.roll_recycler);

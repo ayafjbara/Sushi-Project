@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,15 +28,16 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
     private ImageView sushi;
     private HashMap<SushiRoll, Integer> rollOrder;
     private SushiRoll myRoll;
-    private TextView rollToMenuBtn, rollToCheckoutButton;
+    private TextView rollToCheckoutButton;
+    private ImageView rollToMenuBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sushi_layout);
 
-        rollToMenuBtn = findViewById(R.id.addRollButton);
-        rollToCheckoutButton = findViewById(R.id.rollToCheckoutButton);
+        rollToMenuBtn = findViewById(R.id.add_roll_btn);
+        rollToCheckoutButton = findViewById(R.id.checkout_btn);
         sushi = findViewById(R.id.image_sushi);
 
         rollToMenuBtn.setEnabled(false);
@@ -76,7 +78,7 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
     public void onFinishRollClick(View view) {
 
         addRollToOrder();
-        if (view.getId() == R.id.rollToCheckoutButton) {
+        if (view.getId() == R.id.checkout_btn) {
             Intent intent = new Intent(this, PaymentActivity.class);
             intent.putExtra(ORDER_KEY, rollOrder);
             startActivity(intent);
@@ -123,7 +125,7 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
             rollToCheckoutButton.setEnabled(true);
         } else {
             // set 'go to payment' button invisible
-            RelativeLayout finishRollLay = findViewById(R.id.finishRollLay);
+            ConstraintLayout finishRollLay = findViewById(R.id.finishRollLay);
 //            finishRollLay.setVisibility(View.INVISIBLE);
             rollToMenuBtn.setEnabled(false);
             rollToCheckoutButton.setEnabled(false);

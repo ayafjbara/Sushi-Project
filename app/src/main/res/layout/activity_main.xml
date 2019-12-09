@@ -13,7 +13,7 @@
         android:layout_marginTop="32dp"
         android:adjustViewBounds="false"
         android:cropToPadding="false"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -31,6 +31,7 @@
         app:layout_constraintTop_toBottomOf="@+id/app_logo">
 
         <LinearLayout
+            android:id="@+id/buttons_frame"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -41,49 +42,45 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/ic_button_border"
                 android:orientation="horizontal">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/maki_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/page_margin"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    app:srcCompat="@drawable/ic_sushi1" />
 
-                    <ImageView
-                        android:id="@+id/maki_icon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="@dimen/page_margin"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        app:srcCompat="@drawable/ic_sushi1" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginBottom="3dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingVertical="5dp">
 
                     <TextView
                         android:id="@+id/maki_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginLeft="79dp"
-                        android:layout_marginTop="14dp"
-                        android:layout_toRightOf="@+id/maki_icon"
                         android:gravity="center"
-                        android:text="maki"
+                        android:text="@string/maki"
                         android:textAllCaps="true"
                         android:textSize="30sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="26dp"
-                        android:layout_below="@+id/maki_title"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginLeft="50dp"
-                        android:layout_marginTop="1dp"
-                        android:layout_marginBottom="-1dp"
-                        android:layout_toRightOf="@+id/maki_icon"
+                        android:layout_height="wrap_content"
                         android:text="@string/_3_filling_only"
                         android:textSize="18sp" />
 
-                </RelativeLayout>
-
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -91,31 +88,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="@dimen/page_margin"
                 android:background="@drawable/ic_button_border"
                 android:orientation="horizontal">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/futomaki_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/page_margin"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    app:srcCompat="@drawable/ic_sushi2" />
 
-                    <ImageView
-                        android:id="@+id/futomaki_icon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="@dimen/page_margin"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        app:srcCompat="@drawable/ic_sushi2" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginBottom="3dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingVertical="5dp">
 
                     <TextView
                         android:id="@+id/futomaki_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginLeft="59dp"
-                        android:layout_marginTop="14dp"
-                        android:layout_toRightOf="@+id/futomaki_icon"
                         android:gravity="center"
                         android:text="@string/maki_i_o"
                         android:textAllCaps="true"
@@ -123,34 +121,14 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="26dp"
-                        android:layout_below="@+id/futomaki_title"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginLeft="38dp"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginBottom="-2dp"
-                        android:layout_toRightOf="@+id/futomaki_icon"
+                        android:layout_height="wrap_content"
                         android:text="@string/_3_filling_only"
                         android:textSize="18sp" />
-                </RelativeLayout>
 
+                </LinearLayout>
             </LinearLayout>
-
-            <!--            <ImageButton-->
-            <!--                android:id="@+id/maki_button"-->
-            <!--                style="@android:style/Widget.DeviceDefault.ImageButton"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                app:srcCompat="@drawable/ic_sushi1" />-->
-
-            <!--            <ImageButton-->
-            <!--                android:id="@+id/photomaki_button"-->
-            <!--                style="@android:style/Widget.DeviceDefault.ImageButton"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                app:srcCompat="@drawable/ic_sushi1" />-->
-
         </LinearLayout>
+
     </ScrollView>
 
     <LinearLayout
@@ -171,15 +149,16 @@
             android:background="@drawable/ic_button_checkout_border"
             android:orientation="horizontal"
             android:visibility="invisible">
-            <!--            android:visibility="invisible">-->
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:fontFamily="sans-serif-light"
                 android:gravity="center"
                 android:padding="20dp"
-                android:textAlignment="center"
                 android:text="Checkout"
+                android:textAlignment="center"
+                android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="30sp" />
         </LinearLayout>
