@@ -15,7 +15,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 
-public class ExtrasFragmet extends Fragment {
+public class ExtrasFragment extends Fragment {
     ExtrasPagerAdapter extrasPagerAdapter;
     ViewPager viewPager;
     SushiExtrasActivity sushiExtrasActivity;
