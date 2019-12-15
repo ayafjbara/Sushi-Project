@@ -41,7 +41,7 @@
             app:layout_constraintStart_toStartOf="@id/image_sushi"
             app:layout_constraintTop_toTopOf="@id/image_sushi"
             app:srcCompat="@drawable/ic_in_avocado"
-            android:onClick="onInExtraClick"/>
+            android:onClick="OnInnerFillingClick"/>
 
         <ImageView
             android:id="@+id/img_in_top_left"
@@ -60,7 +60,7 @@
             app:layout_constraintStart_toStartOf="@id/image_sushi"
             app:layout_constraintTop_toTopOf="@id/image_sushi"
             app:srcCompat="@drawable/ic_in_tuna"
-            android:onClick="onInExtraClick"/>
+            android:onClick="OnInnerFillingClick"/>
 
         <ImageView
             android:id="@+id/img_in_bottom"
@@ -79,7 +79,7 @@
             app:layout_constraintStart_toStartOf="@id/image_sushi"
             app:layout_constraintTop_toTopOf="@id/image_sushi"
             app:srcCompat="@drawable/ic_in_salmon"
-            android:onClick="onInExtraClick"/>
+            android:onClick="OnInnerFillingClick"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

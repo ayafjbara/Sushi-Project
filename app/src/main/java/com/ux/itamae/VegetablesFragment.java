@@ -33,7 +33,7 @@ public class VegetablesFragment extends Fragment {
         images.add(R.drawable.ic_ex_cucumber);
         GridView gridView = view.findViewById(R.id.extrasTable);
         gridView.setNumColumns(2);
-        GridExtraAdapter gridExtraAdapter = new GridExtraAdapter(getContext(), R.layout.grid_image_view_layout, "", images);
+        GridFillingAdapter gridExtraAdapter = new GridFillingAdapter(getContext(), R.layout.grid_image_view_layout, "", images);
         gridExtraAdapter.callBack = sushiFillingsActivity;
         gridView.setAdapter(gridExtraAdapter);
     }

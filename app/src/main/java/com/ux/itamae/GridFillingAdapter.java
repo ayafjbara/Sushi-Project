@@ -15,21 +15,21 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 
-public class GridExtraAdapter extends ArrayAdapter<Integer> {
+public class GridFillingAdapter extends ArrayAdapter<Integer> {
     private LayoutInflater layoutInflater;
     private int layoutResource;
     private Constants constants;
-    public ExtraClickCallBack callBack;
+    public GridClickCallBack callBack;
 
-    public GridExtraAdapter(Context context, int layoutResource, String mAppend, ArrayList<Integer> images) {
+    public GridFillingAdapter(Context context, int layoutResource, String mAppend, ArrayList<Integer> images) {
         super(context, layoutResource, images);
         this.layoutInflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
         this.layoutResource = layoutResource;
         this.constants = Constants.getInstance();
     }
 
-    public interface ExtraClickCallBack {
-        void onExtraClick(int imageView);
+    public interface GridClickCallBack {
+        void onFillingClick(int imageView);
     }
 
     private static class ViewHolder {
@@ -58,7 +58,7 @@ public class GridExtraAdapter extends ArrayAdapter<Integer> {
             @Override
             public void onClick(View view) {
                 if (callBack != null) {
-                    callBack.onExtraClick(image);
+                    callBack.onFillingClick(image);
                 }
             }
         });
