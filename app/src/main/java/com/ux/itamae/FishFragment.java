@@ -13,15 +13,15 @@ import androidx.fragment.app.Fragment;
 import java.util.ArrayList;
 
 public class FishFragment extends Fragment {
-    SushiExtrasActivity sushiExtrasActivity;
+    SushiFillingsActivity sushiFillingsActivity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.extras_layout, container, false);
     }
 
-    public void setSushiExtrasActivity(SushiExtrasActivity sushiExtrasActivity) {
-        this.sushiExtrasActivity = sushiExtrasActivity;
+    public void setSushiFillingsActivity(SushiFillingsActivity sushiFillingsActivity) {
+        this.sushiFillingsActivity = sushiFillingsActivity;
     }
 
     @Override
@@ -32,7 +32,7 @@ public class FishFragment extends Fragment {
         GridView gridView = view.findViewById(R.id.extrasTable);
         gridView.setNumColumns(2);
         GridExtraAdapter gridExtraAdapter = new GridExtraAdapter(getContext(), R.layout.grid_image_view_layout, "", images);
-        gridExtraAdapter.callBack = sushiExtrasActivity;
+        gridExtraAdapter.callBack = sushiFillingsActivity;
         gridView.setAdapter(gridExtraAdapter);
     }
 }

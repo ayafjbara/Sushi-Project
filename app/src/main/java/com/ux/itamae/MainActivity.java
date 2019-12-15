@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         checkoutFrameButton = findViewById(R.id.checkout_frame_btn);
 
         final Context context = this;
-        final Intent makeRollIntent = new Intent(context, SushiExtrasActivity.class);
+        final Intent makeRollIntent = new Intent(context, SushiFillingsActivity.class);
         // get current order details
         Intent orderIntent = getIntent();
         orderDetails = (HashMap) orderIntent.getSerializableExtra(ORDER_KEY);

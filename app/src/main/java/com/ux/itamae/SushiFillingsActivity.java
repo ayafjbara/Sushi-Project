@@ -16,7 +16,7 @@ import java.util.Map;
 
 import static com.ux.itamae.PaymentActivity.ORDER_KEY;
 
-public class SushiExtrasActivity extends AppCompatActivity implements GridExtraAdapter.ExtraClickCallBack {
+public class SushiFillingsActivity extends AppCompatActivity implements GridExtraAdapter.ExtraClickCallBack {
 
     private Context context;
     private final String SUSHI_TYPE_KEY = "SUSHI_TYPE";
@@ -57,10 +57,10 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
                 return;
             }
 
-            ExtrasFragment extrasFragment = new ExtrasFragment();
-            extrasFragment.setSushiExtrasActivity(this);
-            extrasFragment.setArguments(intent.getExtras());
-            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, extrasFragment).commit();
+            FillingsFragment fillingsFragment = new FillingsFragment();
+            fillingsFragment.setSushiFillingsActivity(this);
+            fillingsFragment.setArguments(intent.getExtras());
+            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fillingsFragment).commit();
         }
     }
 
@@ -152,15 +152,15 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
         if (extra1 == null) {
             extra1 = findViewById(R.id.img_in_top_right);
             addExtra(extra1, image);
-            myRoll.setExtra1(image);
+            myRoll.setRoll_filling1(image);
         } else if (extra2 == null) {
             extra2 = findViewById(R.id.img_in_top_left);
             addExtra(extra2, image);
-            myRoll.setExtra2(image);
+            myRoll.setRoll_filling2(image);
         } else if (extra3 == null) {
             extra3 = findViewById(R.id.img_in_bottom);
             addExtra(extra3, image);
-            myRoll.setExtra3(image);
+            myRoll.setRoll_filling3(image);
         }
     }
 

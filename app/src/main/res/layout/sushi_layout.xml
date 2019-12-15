@@ -28,7 +28,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/snippet_sushi_view">
 
-            <include layout="@layout/sushi_extras_layout" />
+            <include layout="@layout/sushi_fillings_layout" />
         </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout

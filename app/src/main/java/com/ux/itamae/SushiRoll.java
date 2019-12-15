@@ -13,24 +13,24 @@ import java.util.List;
 
 public class SushiRoll implements Parcelable {
 
-    private int extra1, extra2, extra3;
+    private int roll_filling1, roll_filling2, roll_filling3;
     private String type;
 
     public SushiRoll(String type) {
         this.type = type;
     }
 
-    public SushiRoll(int extra1, int extra2, int extra3, String type) {
-        this.extra1 = extra1;
-        this.extra2 = extra2;
-        this.extra3 = extra3;
+    public SushiRoll(int roll_filling1, int roll_filling2, int roll_filling3, String type) {
+        this.roll_filling1 = roll_filling1;
+        this.roll_filling2 = roll_filling2;
+        this.roll_filling3 = roll_filling3;
         this.type = type;
     }
 
     protected SushiRoll(Parcel in) {
-        extra1 = in.readInt();
-        extra2 = in.readInt();
-        extra3 = in.readInt();
+        roll_filling1 = in.readInt();
+        roll_filling2 = in.readInt();
+        roll_filling3 = in.readInt();
         type = in.readString();
     }
 
@@ -42,45 +42,45 @@ public class SushiRoll implements Parcelable {
         this.type = type;
     }
 
-    public int getExtra1() {
-        return extra1;
+    public int getRoll_filling1() {
+        return roll_filling1;
     }
 
-    public int getExtra2() {
-        return extra2;
+    public int getRoll_filling2() {
+        return roll_filling2;
     }
 
-    public int getExtra3() {
-        return extra3;
+    public int getRoll_filling3() {
+        return roll_filling3;
     }
 
-    public void setExtra1(int extra1) {
-        this.extra1 = extra1;
+    public void setRoll_filling1(int roll_filling1) {
+        this.roll_filling1 = roll_filling1;
     }
 
-    public void setExtra2(int extra2) {
-        this.extra2 = extra2;
+    public void setRoll_filling2(int roll_filling2) {
+        this.roll_filling2 = roll_filling2;
     }
 
-    public void setExtra3(int extra3) {
-        this.extra3 = extra3;
+    public void setRoll_filling3(int roll_filling3) {
+        this.roll_filling3 = roll_filling3;
     }
 
 
     public HashMap getExtras() {
         HashMap<Integer, Integer> extras = new HashMap();
 
-        extras.put(extra1, 1);
-        if (extras.get(extra2) != null)
-            extras.put(extra2, 2);
+        extras.put(roll_filling1, 1);
+        if (extras.get(roll_filling2) != null)
+            extras.put(roll_filling2, 2);
         else
-            extras.put(extra2, 1);
+            extras.put(roll_filling2, 1);
 
-        Integer numOfextras3 = extras.get(extra3);
-        if (numOfextras3 != null)
-            extras.put(extra3, numOfextras3 + 1);
+        Integer numOfFillings3 = extras.get(roll_filling3);
+        if (numOfFillings3 != null)
+            extras.put(roll_filling3, numOfFillings3 + 1);
         else
-            extras.put(extra3, 1);
+            extras.put(roll_filling3, 1);
 
         return extras;
     }
@@ -104,9 +104,9 @@ public class SushiRoll implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(extra1);
-        parcel.writeInt(extra2);
-        parcel.writeInt(extra3);
+        parcel.writeInt(roll_filling1);
+        parcel.writeInt(roll_filling2);
+        parcel.writeInt(roll_filling3);
         parcel.writeString(type);
     }
 
@@ -116,18 +116,18 @@ public class SushiRoll implements Parcelable {
         if (!sushi2.getType().equals(type))
             return false;
 
-        int objExtra1 = sushi2.getExtra1();
-        int objExtra2 = sushi2.getExtra2();
-        int objExtra3 = sushi2.getExtra3();
+        int objFilling1 = sushi2.getRoll_filling1();
+        int objFilling2 = sushi2.getRoll_filling2();
+        int objFilling3 = sushi2.getRoll_filling3();
 
-        List<Integer> obj1Extras = new ArrayList<Integer>(Arrays.asList(objExtra1, objExtra2, objExtra3));
-        List<Integer> obj2Extras = new ArrayList<Integer>(Arrays.asList(extra1, extra2, extra3));
+        List<Integer> obj1Fillings = new ArrayList<Integer>(Arrays.asList(objFilling1, objFilling2, objFilling3));
+        List<Integer> obj2Fillings = new ArrayList<Integer>(Arrays.asList(roll_filling1, roll_filling2, roll_filling3));
 
-        Collections.sort(obj1Extras);
-        Collections.sort(obj2Extras);
+        Collections.sort(obj1Fillings);
+        Collections.sort(obj2Fillings);
 
         for (int i = 0; i < 3; i++)
-            if (!obj1Extras.get(i).equals(obj2Extras.get(i)))
+            if (!obj1Fillings.get(i).equals(obj2Fillings.get(i)))
                 return false;
         return true;
     }

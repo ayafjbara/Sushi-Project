@@ -1,6 +1,5 @@
 package com.ux.itamae;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,10 +14,10 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 
-public class ExtrasFragment extends Fragment {
-    ExtrasPagerAdapter extrasPagerAdapter;
+public class FillingsFragment extends Fragment {
+    FillingsPagerAdapter fillingsPagerAdapter;
     ViewPager viewPager;
-    SushiExtrasActivity sushiExtrasActivity;
+    SushiFillingsActivity sushiFillingsActivity;
     public GridExtraAdapter.ExtraClickCallBack callBack;
 
     @Nullable
@@ -26,41 +25,41 @@ public class ExtrasFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.sushi_extras_layout, container, false);
+        return inflater.inflate(R.layout.sushi_fillings_layout, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        extrasPagerAdapter = new ExtrasPagerAdapter(getChildFragmentManager(), sushiExtrasActivity);
+        fillingsPagerAdapter = new FillingsPagerAdapter(getChildFragmentManager(), sushiFillingsActivity);
         if (callBack != null) {
-            extrasPagerAdapter.callBack = callBack;
+            fillingsPagerAdapter.callBack = callBack;
         }
-        viewPager = view.findViewById(R.id.sushi_extras);
-        viewPager.setAdapter(extrasPagerAdapter);
+        viewPager = view.findViewById(R.id.sushi_fillings);
+        viewPager.setAdapter(fillingsPagerAdapter);
         TabLayout tabLayout = view.findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager);
     }
 
-    public void setSushiExtrasActivity(SushiExtrasActivity sushiExtrasActivity) {
-        this.sushiExtrasActivity = sushiExtrasActivity;
+    public void setSushiFillingsActivity(SushiFillingsActivity sushiFillingsActivity) {
+        this.sushiFillingsActivity = sushiFillingsActivity;
     }
 }
 
-class ExtrasPagerAdapter extends FragmentStatePagerAdapter {
+class FillingsPagerAdapter extends FragmentStatePagerAdapter {
     FishFragment fishFragment;
     VegetablesFragment vegetablesFragment;
     public GridExtraAdapter.ExtraClickCallBack callBack;
-    SushiExtrasActivity sushiExtrasActivity;
+    SushiFillingsActivity sushiFillingsActivity;
 
-    public ExtrasPagerAdapter(FragmentManager fm, SushiExtrasActivity sushiExtrasActivity) {
+    public FillingsPagerAdapter(FragmentManager fm, SushiFillingsActivity sushiFillingsActivity) {
         super(fm);
         fishFragment = new FishFragment();
-        fishFragment.setSushiExtrasActivity(sushiExtrasActivity);
+        fishFragment.setSushiFillingsActivity(sushiFillingsActivity);
 
         vegetablesFragment = new VegetablesFragment();
-        vegetablesFragment.setSushiExtrasActivity(sushiExtrasActivity);
+        vegetablesFragment.setSushiFillingsActivity(sushiFillingsActivity);
 
-        this.sushiExtrasActivity = sushiExtrasActivity;
+        this.sushiFillingsActivity = sushiFillingsActivity;
     }
 
     @Override
