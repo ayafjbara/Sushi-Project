@@ -12,6 +12,6 @@
     <string name="minus_roll">minus roll</string>
     <string name="plus_roll">plus roll</string>
     <string name="_3_filling_only">Choose 3 fillings only</string>
-    <string name="maki_i_o">Maki I/O</string>
+    <string name="maki_io">Maki I/O</string>
     <string name="maki">Maki</string>
 </resources>
