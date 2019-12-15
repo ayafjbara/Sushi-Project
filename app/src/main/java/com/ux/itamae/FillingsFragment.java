@@ -56,13 +56,10 @@ class FillingsPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int i) {
-        switch (i) {
-            case 0:
-                return fishFragment;
-            case 1:
-                return vegetablesFragment;
-        }
-        return null;
+        if (i == 0)
+            return fishFragment;
+        else
+            return vegetablesFragment;
     }
 
     @Override
@@ -72,13 +69,10 @@ class FillingsPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        switch (position) {
-            case 0:
-                return "Fish";
-            case 1:
-                return "Vegetables";
-        }
-        return "";
+        if (position == 0)
+            return "Fish";
+        else
+            return "Vegetables";
     }
 }
 
