@@ -15,10 +15,9 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 
 public class FillingsFragment extends Fragment {
-    FillingsPagerAdapter fillingsPagerAdapter;
-    ViewPager viewPager;
-    SushiFillingsActivity sushiFillingsActivity;
-    public GridExtraAdapter.ExtraClickCallBack callBack;
+    private FillingsPagerAdapter fillingsPagerAdapter;
+    private ViewPager viewPager;
+    private SushiFillingsActivity sushiFillingsActivity;
 
     @Nullable
     @Override
@@ -31,9 +30,6 @@ public class FillingsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         fillingsPagerAdapter = new FillingsPagerAdapter(getChildFragmentManager(), sushiFillingsActivity);
-        if (callBack != null) {
-            fillingsPagerAdapter.callBack = callBack;
-        }
         viewPager = view.findViewById(R.id.sushi_fillings);
         viewPager.setAdapter(fillingsPagerAdapter);
         TabLayout tabLayout = view.findViewById(R.id.tab_layout);
@@ -46,10 +42,8 @@ public class FillingsFragment extends Fragment {
 }
 
 class FillingsPagerAdapter extends FragmentStatePagerAdapter {
-    FishFragment fishFragment;
-    VegetablesFragment vegetablesFragment;
-    public GridExtraAdapter.ExtraClickCallBack callBack;
-    SushiFillingsActivity sushiFillingsActivity;
+    private FishFragment fishFragment;
+    private VegetablesFragment vegetablesFragment;
 
     public FillingsPagerAdapter(FragmentManager fm, SushiFillingsActivity sushiFillingsActivity) {
         super(fm);
@@ -58,13 +52,10 @@ class FillingsPagerAdapter extends FragmentStatePagerAdapter {
 
         vegetablesFragment = new VegetablesFragment();
         vegetablesFragment.setSushiFillingsActivity(sushiFillingsActivity);
-
-        this.sushiFillingsActivity = sushiFillingsActivity;
     }
 
     @Override
     public Fragment getItem(int i) {
-
         switch (i) {
             case 0:
                 return fishFragment;
