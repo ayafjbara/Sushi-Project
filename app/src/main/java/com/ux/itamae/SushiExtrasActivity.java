@@ -57,10 +57,10 @@ public class SushiExtrasActivity extends AppCompatActivity implements GridExtraA
                 return;
             }
 
-            ExtrasFragmet extrasFragmet = new ExtrasFragmet();
-            extrasFragmet.setSushiExtrasActivity(this);
-            extrasFragmet.setArguments(intent.getExtras());
-            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, extrasFragmet).commit();
+            ExtrasFragment extrasFragment = new ExtrasFragment();
+            extrasFragment.setSushiExtrasActivity(this);
+            extrasFragment.setArguments(intent.getExtras());
+            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, extrasFragment).commit();
         }
     }
 
