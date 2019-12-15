@@ -21,8 +21,6 @@ import java.util.HashMap;
 public class PaymentActivity extends AppCompatActivity implements RollRecyclerUtils.RollClickCallBack {
 
     public static final String ORDER_KEY = "order";
-    private TextView orderContent;
-    private Button orderBtn;
     private Intent intent;
     private ConstraintLayout orderLayout;
     private ConstraintLayout finishOrderLayout;
@@ -36,12 +34,9 @@ public class PaymentActivity extends AppCompatActivity implements RollRecyclerUt
         setContentView(R.layout.activity_payment);
 
         // bind views
-//        orderBtn = findViewById(R.id.order_btn);
         finishOrderLayout = findViewById(R.id.finish_order_layout);
         rollRecyclerView = findViewById(R.id.roll_recycler);
         orderLayout = findViewById(R.id.order_layout);
-
-        final Context context = this;
 
         // handle intent
         intent = getIntent();
@@ -52,20 +47,25 @@ public class PaymentActivity extends AppCompatActivity implements RollRecyclerUt
         setUpRecycler();
     }
 
+    /**
+     * Sets up the recycler view of the roll order.
+     */
     private void setUpRecycler() {
         rollRecyclerView.setLayoutManager(new LinearLayoutManager(
                 this, LinearLayoutManager.VERTICAL, false));
+
+        // set up adapter
         adapter.setUpAmounts(sushiRolls);
         rollRecyclerView.setAdapter(adapter);
         adapter.callback = this;
+
+        // update list
         adapter.submitList(new ArrayList<>(sushiRolls.keySet()));
     }
-
 
     private void setUpToolbar() {
         // set up toolbar and back arrow
         Toolbar mToolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
         setSupportActionBar(mToolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle(getString(R.string.order_sum_title));
@@ -74,12 +74,17 @@ public class PaymentActivity extends AppCompatActivity implements RollRecyclerUt
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {// go to back activity from here
+        // Sets up menu items
+        if (item.getItemId() == android.R.id.home) {
+            // go to back activity from here
             Intent backIntent = new Intent(this, MainActivity.class);
             backIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            // if current order isn't empty, keep it
             if (sushiRolls != null && !sushiRolls.isEmpty()) {
                 backIntent.putExtra(ORDER_KEY, sushiRolls);
             }
+
             startActivity(backIntent);
             finish();
             return true;
@@ -113,7 +118,4 @@ public class PaymentActivity extends AppCompatActivity implements RollRecyclerUt
         adapter.submitList(new ArrayList<>(sushiRolls.keySet()));
     }
 
-//    private void updateOrderText(String order) {
-//        orderContent.setText(order);
-//    }
 }
