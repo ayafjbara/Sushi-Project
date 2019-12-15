@@ -16,14 +16,15 @@ import java.util.Map;
 
 import static com.ux.itamae.PaymentActivity.ORDER_KEY;
 
-public class SushiFillingsActivity extends AppCompatActivity implements GridExtraAdapter.ExtraClickCallBack {
+public class SushiFillingsActivity extends AppCompatActivity implements GridFillingAdapter.GridClickCallBack {
 
     private Context context;
     private final String SUSHI_TYPE_KEY = "SUSHI_TYPE";
+    private String MAKI = "Maki";
     private String rollType = "";
     private int extras_counter = 0;
 
-    private ImageView extra1, extra2, extra3;
+    private ImageView filling1, filling2, filling3;
     private ImageView sushi;
     private HashMap<SushiRoll, Integer> rollOrder;
     private SushiRoll myRoll;
@@ -65,7 +66,7 @@ public class SushiFillingsActivity extends AppCompatActivity implements GridExtr
     }
 
     public void updateSushiTypeImage(String type) {
-        if (type.equals("Maki")) {
+        if (type.equals(MAKI)) {
             sushi.setImageDrawable(getDrawable(R.drawable.ic_sushi));
         } else {
             sushi.setImageDrawable(getDrawable(R.drawable.ic_sushi_io));
@@ -128,48 +129,54 @@ public class SushiFillingsActivity extends AppCompatActivity implements GridExtr
         }
     }
 
-    public void onInExtraClick(View view) {
+    public void OnInnerFillingClick(View view) {
         updateCounter(false);
         switch (view.getId()) {
             case R.id.img_in_top_right:
-                extra1.setVisibility(View.INVISIBLE);
-                extra1 = null;
+                filling1.setVisibility(View.INVISIBLE);
+                filling1 = null;
                 break;
             case R.id.img_in_top_left:
-                extra2.setVisibility(View.INVISIBLE);
-                extra2 = null;
+                filling2.setVisibility(View.INVISIBLE);
+                filling2 = null;
                 break;
             case R.id.img_in_bottom:
-                extra3.setVisibility(View.INVISIBLE);
-                extra3 = null;
+                filling3.setVisibility(View.INVISIBLE);
+                filling3 = null;
                 break;
         }
     }
 
     @Override
-    public void onExtraClick(int image) {
+    public void onFillingClick(int image) {
         updateCounter(true);
-        if (extra1 == null) {
-            extra1 = findViewById(R.id.img_in_top_right);
-            addExtra(extra1, image);
+        if (filling1 == null) {
+            filling1 = findViewById(R.id.img_in_top_right);
+            addFilling(filling1, image);
             myRoll.setRoll_filling1(image);
-        } else if (extra2 == null) {
-            extra2 = findViewById(R.id.img_in_top_left);
-            addExtra(extra2, image);
+        } else if (filling2 == null) {
+            filling2 = findViewById(R.id.img_in_top_left);
+            addFilling(filling2, image);
             myRoll.setRoll_filling2(image);
-        } else if (extra3 == null) {
-            extra3 = findViewById(R.id.img_in_bottom);
-            addExtra(extra3, image);
+        } else if (filling3 == null) {
+            filling3 = findViewById(R.id.img_in_bottom);
+            addFilling(filling3, image);
             myRoll.setRoll_filling3(image);
         }
     }
 
-    private void addExtra(ImageView extra, int image) {
-        extra.setImageDrawable(getInExtra(image));
-        extra.setVisibility(View.VISIBLE);
+    private void addFilling(ImageView filling, int image) {
+        filling.setImageDrawable(getInFilling(image));
+        filling.setVisibility(View.VISIBLE);
     }
 
-    private Drawable getInExtra(int image) {
+    /**
+     * Gets an external image of the filling (the menu image), and return the image for the same
+     * filling in the sushi.
+     * @param image - an external image of the filling (the menu image).
+     * @return a drawable for the image of the inner filling - in the sushi.
+     */
+    private Drawable getInFilling(int image) {
         switch (image) {
             case R.drawable.ic_ex_avocado:
                 return getDrawable(R.drawable.ic_in_avocado);

@@ -32,9 +32,12 @@ public class RollRecyclerUtils {
         }
     }
 
+    /**
+     * An interface that allows other classes to expand on what happens when an item
+     * (or parts of it) in the recycler view is clicked.
+     */
     interface RollClickCallBack {
         void updateRollAmount(SushiRoll sushiRoll, int numOfRolls);
-
         void deleteRoll(SushiRoll sushiRoll);
     }
 
@@ -59,7 +62,10 @@ public class RollRecyclerUtils {
         public SushiRollHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             this.context = parent.getContext();
             View itemView = LayoutInflater.from(context).inflate(R.layout.item_roll, parent, false);
+
             final SushiRollHolder holder = new SushiRollHolder(itemView);
+
+            // Set up add/remove roll buttons
             holder.minusBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -110,7 +116,12 @@ public class RollRecyclerUtils {
         }
     }
 
+    
+    /**
+     * Represents a filling of the sushi in the recycler.
+     */
     static protected class Filling {
+
         public ConstraintLayout layout;
         public TextView content;
         public TextView amount;
@@ -130,6 +141,10 @@ public class RollRecyclerUtils {
         }
     }
 
+
+    /**
+     * A holder for an item in the recycler view.
+     */
     static class SushiRollHolder extends RecyclerView.ViewHolder {
         public final TextView rollTitle;
 
@@ -160,6 +175,8 @@ public class RollRecyclerUtils {
         public SushiRollHolder(@NonNull View itemView) {
             super(itemView);
             this.view = itemView;
+
+            // bind views
             rollTitle = itemView.findViewById(R.id.roll_title);
             numOfRolls = itemView.findViewById(R.id.num_of_rolls);
             minusBtn = itemView.findViewById(R.id.minus_roll_btn);
