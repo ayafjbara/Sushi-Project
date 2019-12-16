@@ -20,13 +20,6 @@ public class SushiRoll implements Parcelable {
         this.type = type;
     }
 
-    public SushiRoll(int roll_filling1, int roll_filling2, int roll_filling3, String type) {
-        this.roll_filling1 = roll_filling1;
-        this.roll_filling2 = roll_filling2;
-        this.roll_filling3 = roll_filling3;
-        this.type = type;
-    }
-
     protected SushiRoll(Parcel in) {
         roll_filling1 = in.readInt();
         roll_filling2 = in.readInt();
@@ -67,7 +60,7 @@ public class SushiRoll implements Parcelable {
     }
 
 
-    public HashMap getExtras() {
+    public HashMap getFillings() {
         HashMap<Integer, Integer> extras = new HashMap();
 
         extras.put(roll_filling1, 1);
@@ -110,6 +103,9 @@ public class SushiRoll implements Parcelable {
         parcel.writeString(type);
     }
 
+    /**
+     * Two sushi rolls are equal if they have the same fillings
+     */
     @Override
     public boolean equals(@Nullable Object obj) {
         SushiRoll sushi2 = ((SushiRoll) obj);

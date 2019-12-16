@@ -9,7 +9,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 
+
 import java.util.HashMap;
+
+import static com.ux.itamae.Constants.IOMAKI_INTENT_KEY;
+import static com.ux.itamae.Constants.MAKI_INTENT_KEY;
 
 public class MainActivity extends AppCompatActivity {
     public final String SUSHI_TYPE_KEY = "SUSHI_TYPE";
@@ -41,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         makiLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                makeRollIntent.putExtra(SUSHI_TYPE_KEY, "Maki");
+                makeRollIntent.putExtra(SUSHI_TYPE_KEY, MAKI_INTENT_KEY);
                 makeRollIntent.putExtra(ORDER_KEY, orderDetails);
                 startActivityForResult(makeRollIntent, NEW_ROLL_REQUEST);
             }
@@ -50,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         makiIOLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                makeRollIntent.putExtra(SUSHI_TYPE_KEY, "Maki I/O");
+                makeRollIntent.putExtra(SUSHI_TYPE_KEY, IOMAKI_INTENT_KEY);
                 makeRollIntent.putExtra(ORDER_KEY, orderDetails);
                 startActivityForResult(makeRollIntent, NEW_ROLL_REQUEST);
             }

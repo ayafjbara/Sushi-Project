@@ -14,13 +14,12 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.ux.itamae.Constants.MAKI_INTENT_KEY;
 import static com.ux.itamae.PaymentActivity.ORDER_KEY;
 
 public class SushiFillingsActivity extends AppCompatActivity implements GridFillingAdapter.GridClickCallBack {
 
-    private Context context;
     private final String SUSHI_TYPE_KEY = "SUSHI_TYPE";
-    private final String MAKI = "Maki";
     private String rollType = "";
     private int extras_counter = 0;
 
@@ -43,7 +42,6 @@ public class SushiFillingsActivity extends AppCompatActivity implements GridFill
         rollToMenuBtn.setEnabled(false);
         rollToCheckoutButton.setEnabled(false);
 
-        context = this;
         Intent intent = getIntent();
         rollType = intent.getStringExtra(SUSHI_TYPE_KEY);
         rollOrder = (HashMap) intent.getSerializableExtra(ORDER_KEY);
@@ -66,7 +64,7 @@ public class SushiFillingsActivity extends AppCompatActivity implements GridFill
     }
 
     public void updateSushiTypeImage(String type) {
-        if (type.equals(MAKI)) {
+        if (type.equals(MAKI_INTENT_KEY)) {
             sushi.setImageDrawable(getDrawable(R.drawable.ic_sushi));
         } else {
             sushi.setImageDrawable(getDrawable(R.drawable.ic_sushi_io));

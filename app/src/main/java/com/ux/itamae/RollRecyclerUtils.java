@@ -103,7 +103,7 @@ public class RollRecyclerUtils {
 
             holder.rollTitle.setText(roll.getType());
 
-            Map<Integer, Integer> fillings = roll.getExtras();
+            Map<Integer, Integer> fillings = roll.getFillings();
             for (Map.Entry<Integer, Integer> filling : fillings.entrySet()) {
                 Filling curFilling = holder.getCurrentFilling();
                 int id = filling.getKey();
@@ -116,7 +116,7 @@ public class RollRecyclerUtils {
         }
     }
 
-    
+
     /**
      * Represents a filling of the sushi in the recycler.
      */
@@ -127,10 +127,6 @@ public class RollRecyclerUtils {
         public TextView amount;
         public ImageView image;
         private View view;
-
-        protected Filling(View view) {
-            this.view = view;
-        }
 
         protected Filling(View view, int layoutId, int textId, int imageId, int amountId) {
             this.view = view;

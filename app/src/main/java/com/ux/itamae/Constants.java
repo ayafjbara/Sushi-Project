@@ -7,6 +7,8 @@ public final class Constants {
 
     private Map<Integer, String> extraIdToString = new ArrayMap<>();
     private static Constants instance;
+    static String MAKI_INTENT_KEY = "Maki";
+    static String IOMAKI_INTENT_KEY = "Maki I/O";
 
     private Constants(){
         setExtraIdToString();
