@@ -20,7 +20,7 @@ public class SushiFillingsActivity extends AppCompatActivity implements GridFill
 
     private Context context;
     private final String SUSHI_TYPE_KEY = "SUSHI_TYPE";
-    private String MAKI = "Maki";
+    private final String MAKI = "Maki";
     private String rollType = "";
     private int extras_counter = 0;
 
