@@ -19,6 +19,7 @@ public class FillingsFragment extends Fragment {
     private ViewPager viewPager;
     private SushiFillingsActivity sushiFillingsActivity;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -41,7 +42,10 @@ public class FillingsFragment extends Fragment {
     }
 }
 
-class FillingsPagerAdapter extends FragmentStatePagerAdapter {
+class  FillingsPagerAdapter extends FragmentStatePagerAdapter {
+    private final CharSequence FISH_TITLE = "Fish";
+    private final CharSequence VEGGIE_TITLE = "Vegetables";
+    private final int NUM_OF_TABS = 2;
     private FishFragment fishFragment;
     private VegetablesFragment vegetablesFragment;
 
@@ -64,15 +68,15 @@ class FillingsPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 2;
+        return NUM_OF_TABS;
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
         if (position == 0)
-            return "Fish";
+            return FISH_TITLE;
         else
-            return "Vegetables";
+            return VEGGIE_TITLE;
     }
 }
 
